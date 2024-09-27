@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Fastkart" />
+    <meta name="keywords" content="Fastkart" />
+    <meta name="author" content="Fastkart" />
+    <link
+      rel="icon"
+      href="../../../static/backend_assets/assets/images/favicon.png"
+      type="image/x-icon"
+    />
+    <title>{{title}}</title>
+
+    <!-- Google font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- bootstrap css -->
+    <link
+      id="rtl-link"
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'assets/css/vendors/bootstrap.css' %}"
+    />
+
+    <!-- font-awesome css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'assets/css/vendors/font-awesome.css' %}"
+
+    />
+
+    <!-- feather icon css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../static/assets/css/vendors/feather-icon.css"
+    />
+    <!-- slick css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../static/assets/css/vendors/slick/slick.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../static/assets/css/vendors/slick/slick-theme.css"
+    />
+
+    <!-- Iconly css -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../../../static/assets/css/bulk-style.css"
+    />
+
+    <!-- Template css -->
+    <link
+      id="color-link"
+      rel="stylesheet"
+      type="text/css"
+      href="../../../static/assets/css/style.css"
+    />
+    <!-- wow css -->
+    <link rel="stylesheet" href="../../../static/assets/css/animate.min.css" />
+ 
+
+
+
+    {% block links %}
+    
+    {% endblock links %}
+    <style>
+      .title{
+        color:#760718 !important;
+      }
+      .nav-link-cus::before {
+        content: none !important;
+      }
+      .search-mobile{
+        display:none;
+      }
+      @media only screen and (max-width: 600px){
+        .f-m-display{
+          display:none !important;
+        }
+        .footer-align{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+        }
+        .information-text{
+          text-align: center;
+
+        }
+        .social-icon .light-bg{
+          margin : 5px;
+        }
+        .search-mobile{
+          display:block;
+        }
+      }
+     
+    </style>
+
+
+  </head>
+
+  <body>
+    {% for message in messages %}
+    <div
+      class="alert {{ message.tags }} d-flex justify-content-center alert-dismissible shadow fade show"
+      role="alert"
+    >
+      
+      {{ message }}
+    </div>
+    {% endfor %}
+    <!-- Loader Start -->
+    <div class="fullpage-loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Header Start -->
+    <header class="pb-md-4 pb-0">
+      <div class="header-top">
+        <div class="container-fluid-lg">
+          <div class="row">
+            <div class="col-xxl-3 d-xxl-block d-none">
+              <div class="top-left-header">
+                <i class="iconly-Location icli text-white"></i>
+                <span class="text-white"
+                  >1418 Riverwood Drive, CA 96052, US</span
+                >
+              </div>
+            </div>
+
+            <div class="col-xxl-6 col-lg-9 d-lg-block d-none">
+              <div class="header-offer">
+                <div class="notification-slider">
+                  <div>
+                    <div class="timer-notification">
+                      <h6>
+                        <strong class="me-1">Welcome to Zeba Home Interior!</strong>Wrap
+                        new offers/gift every signle day on Weekends.
+                      </h6>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="timer-notification">
+                      <h6>
+                        Something you love is now on sale!
+                        <a href="{% url 'deals-on-products' %}" class="text-white"
+                          >Buy Now !</a
+                        >
+                      </h6>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          
+          </div>
+        </div>
+      </div>
+
+      <div class="top-nav top-header sticky-header">
+        <div class="container-fluid-lg">
+          <div class="row">
+            <div class="col-12">
+              <div class="navbar-top">
+                <button
+                  class="navbar-toggler d-xl-none d-inline navbar-menu-button"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#primaryMenu"
+                >
+                  <span class="navbar-toggler-icon">
+                    <i class="fa-solid fa-bars"></i>
+                  </span>
+                </button>
+                <a href="{% url 'home' %}" class="web-logo nav-logo">
+                  <img
+                    src="../../../static/assets/images/logo/logo_5.png"
+                    class="img-fluid blur-up lazyload"
+                    alt=""
+                  />
+                </a>
+                <form action="{% url 'search' %}" method = 'GET'>
+                  <div class="middle-box">
+                    <div class="search-box">
+                      <div class="input-group">
+                          <input
+                            type="search" name='search'
+                            class="form-control"
+                            placeholder="I'm searching for..."
+                            aria-label="Recipient's username"
+                            aria-describedby="button-addon2"
+                          />
+                          <button class="btn" type="submit" id="button-addon2">
+                            <i data-feather="search"></i>
+                          </button>
+                      </div>
+                    </div>
+                  </div>
+              </form>
+
+                <div class="rightside-box">
+                  <div class="search-full">
+                    <form action="{% url 'search' %}" class="search-full" method = 'GET'>
+                    <div class="input-group">
+                      <span class="input-group-text">
+                        <i data-feather="search" class="font-light"></i>
+                      </span>
+                      <input
+                        type="text"
+                        class="form-control search-type" name="search"
+                        placeholder="Search here.."
+                      />
+                      <span class="input-group-text close-search">
+                        <i data-feather="x" class="font-light"></i>
+                      </span>
+                    </div>
+                  </form>
+                  </div>
+                  <ul class="right-side-menu">
+                    <li class="right-side">
+                      <div class="delivery-login-box">
+                        <div class="delivery-icon">
+                          <div class="search-box">
+                            <i data-feather="search"></i>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="right-side">
+                      <a
+                        href="{% url 'contactus' %}"
+                        class="tn p-0 position-relative header-wishlist"
+                      >
+                        <div class="delivery-icon">
+                          <i data-feather="phone-call"></i>
+                        </div>
+                      </a>
+                    </li>
+                    <li class="right-side">
+                      <a
+                        href="{% url 'wishlist' %}"
+                        class="btn p-0 position-relative header-wishlist"
+                      >
+                        <i data-feather="heart"></i>
+                      </a>
+                    </li>
+
+                    <li class="right-side">
+                      <a
+                        href="{% url 'show_cart' %}"
+                        class="btn p-0 position-relative header-wishlist"
+                      >
+                        <i data-feather="shopping-cart"></i>
+                      </a>
+                    </li>
+                    {% comment %} 
+                    <li class="right-side">
+                      <div class="onhover-dropdown header-badge">
+                        <button
+                          type="button"
+                          class="btn p-0 position-relative header-wishlist"
+                        >
+                          <i data-feather="shopping-cart"></i>
+                          <span
+                            class="position-absolute top-0 start-100 translate-middle badge"
+                            >2
+                            <span class="visually-hidden">unread messages</span>
+                          </span>
+                        </button>
+                      </div>
+                    </li> {% endcomment %}
+                    <li class="right-side onhover-dropdown">
+                      <div class="delivery-login-box">
+                        <div class="delivery-icon">
+                          <i data-feather="user"></i>
+                        </div>
+                        <div class="delivery-detail">
+                          <h6>Hello,</h6>
+                          <h5>My Account</h5>
+                        </div>
+                      </div>
+
+                      <div class="onhover-div onhover-div-login">
+                        <ul class="user-box-name">
+                          {% if request.user.is_authenticated %}
+                          <li class="product-box-contain">
+                            <span
+                              ><b
+                                >{{request.user.first_name}}
+                                {{request.user.last_name}}</b
+                              ></span
+                            >
+                          </li>
+                          <li class="product-box-contain">
+                            <a href="{% url 'userprofile' %}">View Profile</a>
+                          </li>
+
+                          <li class="product-box-contain">
+                            <a href="{% url 'track_order' %}">Track Order</a>
+                          </li>
+
+                          <li class="product-box-contain">
+                            <a href="{% url 'logout' %}">Log Out</a>
+                          </li>
+                          {% else %}
+
+                          <li class="product-box-contain">
+                            <a href="{% url 'signup' %}">Register</a>
+                          </li>
+
+                          <li class="product-box-contain">
+                            <i></i>
+                            <a href="{% url 'signin' %}">Log In</a>
+                          </li>
+
+                          {% endif %}
+                        </ul>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid-lg">
+        <div class="row">
+          <div class="col-12">
+            <div class="header-nav">
+              <div class="header-nav-left">
+                <button class="dropdown-category">
+                  <i data-feather="align-left"></i>
+                  <span>All Categories</span>
+                </button>
+
+                <div class="category-dropdown">
+                  <div class="category-title">
+                    <h5>Categories</h5>
+                    <button
+                      type="button"
+                      class="btn p-0 close-button text-content"
+                    >
+                      <i class="fa-solid fa-xmark"></i>
+                    </button>
+                  </div>
+                  <ul class="category-list" id="category-list">
+
+                  </ul>
+                <!--
+                  <ul class="category-list">
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <div class="holder">
+                          <i class="fa-solid fa-couch"></i>
+                          <h6>Furniture & Lights</h6>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box w-100">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Furniture & Lights</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Sofa & Chairs</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Bedroom</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Living & Dining</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Kitchen & Dining</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <div class="holder">
+                          <i class="fa-solid fa-couch"></i>
+                          <h6>Home Decor</h6>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box w-100">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Home Decor</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Bedding</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Cushion & Throws</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Home Accessories</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <div class="holder">
+                          <i class="fa-solid fa-couch"></i>
+                          <h6>Rugs & Carpet</h6>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box w-100">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Rugs & Carpet</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)" class="h6">Rugs</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6">Carpet</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Wood Flooring</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6 text-bold">
+                                Design Your Own Unique Rug</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <div class="holder">
+                          <i class="fa-solid fa-couch"></i>
+                          <h6>Curtains & Blinds</h6>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box w-100">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Curtains & Blinds</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)" class="h6">Blinds</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain Accessories</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain Poles</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Tracks & Rods</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <div class="holder">
+                          <i class="fa-solid fa-couch"></i>
+                          <h6>Fabric & Wallpaper</h6>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box w-100">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Fabric & Wallpaper</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)" class="h6">Fabric</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Wallpaper</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain Accessories</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain Poles</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Tracks & Rods</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <div class="holder">
+                          <i class="fa-solid fa-couch"></i>
+                          <h6>Design Servics</h6>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box w-100">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Design Servics</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Coustomize</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6">Blinds</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtains</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Cushion</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Headboards</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Furniture</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <div class="holder">
+                          <i class="fa-solid fa-couch"></i>
+                          <h6>Curtains & Blinds</h6>
+                        </div>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box w-100">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Sales & Offer</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)" class="h6">Blinds</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain Accessories</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Curtain Poles</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)" class="h6"
+                                >Tracks & Rods</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    {% comment %}
+                    <li class="onhover-category-list">
+                      <a href="javascript:void(0)" class="category-name">
+                        <img
+                          src="../../../static/assets/svg/1/meats.svg"
+                          alt=""
+                        />
+                        <h6>Meats & Seafood</h6>
+                        <i class="fa-solid fa-angle-right"></i>
+                      </a>
+
+                      <div class="onhover-category-box">
+                        <div class="list-1">
+                          <div class="category-title-box">
+                            <h5>Meat</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)">Fresh Meat</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)">Frozen Meat</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)">Marinated Meat</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)"
+                                >Fresh & Frozen Meat</a
+                              >
+                            </li>
+                          </ul>
+                        </div>
+
+                        <div class="list-2">
+                          <div class="category-title-box">
+                            <h5>Seafood</h5>
+                          </div>
+                          <ul>
+                            <li>
+                              <a href="javascript:void(0)">Fresh Water Fish</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)">Dry Fish</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)"
+                                >Frozen Fish & Seafood</a
+                              >
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)">Marine Water Fish</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)">Canned Seafood</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)">Prawans & Shrimps</a>
+                            </li>
+                            <li>
+                              <a href="javascript:void(0)">Other Seafood</a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </li>
+                    {% endcomment %}
+                  </ul>
+                -->
+                </div>
+              </div>
+
+              <div class="header-nav-middle">
+                <div
+                  class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky"
+                >
+                  <div
+                    class="offcanvas offcanvas-collapse order-xl-2"
+                    id="primaryMenu"
+                  >
+                    <div class="offcanvas-header navbar-shadow">
+                      <h5>Menu</h5>
+                      <button
+                        class="btn-close lead"
+                        type="button"
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                      ></button>
+                    </div>
+                    <div class="offcanvas-body">
+                      <ul class="navbar-nav">
+
+                        <li class="nav-item search-mobile">
+                            <form action="{% url 'search' %}" method = 'GET'>
+                              <div class="middle-box">
+                                <div class="search-box">
+                                  <div class="input-group">
+                                      <input
+                                        type="search" name='search'
+                                        class="form-control"
+                                        placeholder="I'm searching for..."
+                                        aria-label="Recipient's username"
+                                        aria-describedby="button-addon2"
+                                      />
+                                      <button class="btn" type="submit" id="button-addon2">
+                                        <i data-feather="search"></i>
+                                      </button>
+                                  </div>
+                                </div>
+                              </div>
+                        </form>
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link nav-link-cus"
+                            href="{% url 'home' %}"
+                            >Home</a
+                          >
+                        </li>
+                        <li class="nav-item dropdown dropdown-mega">
+                          <a
+                            class="nav-link nav-link-cus"
+                            href="{% url 'brands' %}"
+                            >Brands</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link nav-link-cus"
+                            href="{% url 'allproducts' %}"
+                            >Products</a
+                          >
+                        </li>
+                        <li class="nav-item">
+                          <a
+                            class="nav-link nav-link-cus"
+                            href="{% url 'articles' %}"
+                            >Articles</a
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="header-nav-right">
+                <a href="{% url 'deals-on-products' %}"class="btn deal-button">
+                  <i data-feather="zap"></i>
+                  <span>Deal Today</span>
+              </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- mobile fix menu start -->
+    <div class="mobile-menu d-md-none d-block mobile-cart">
+      <ul>
+        <li class="active">
+          <a href="{% url 'home' %}">
+            <i class="iconly-Home icli"></i>
+            <span>Home</span>
+          </a>
+        </li>
+
+        <li class="mobile-category">
+          <a href="javascript:void(0)">
+            <i class="iconly-Category icli js-link"></i>
+            <span>Category</span>
+          </a>
+        </li>
+
+        
+
+        <li>
+          <a href="{% url 'wishlist' %}" class="notifi-wishlist">
+            <i class="iconly-Heart icli"></i>
+            <span>My Wish</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="{% url 'show_cart' %}">
+            <i class="iconly-Bag-2 icli fly-cate"></i>
+            <span>Cart</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!-- navbar -->
+
+    <!-- content blocks -->
+
+    {% block content %} {% endblock content %}
+
+     <!-- Newsletter Section Start -->
+     <section class="newsletter newsletter-section section-b-space">
+      <div class="container-fluid-lg">
+          <div class="newsletter-box newsletter-box-2">
+              <div class="newsletter-contain py-5">
+                  <div class="container-fluid">
+                      <div class="row">
+                          <div class="col-xxl-4 col-lg-5 col-md-7 col-sm-9 offset-xxl-2 offset-md-1">
+                              <div class="newsletter-detail">
+                                  <h2>Join our newsletter and get...</h2>
+                                  <h5>New Arriving Products Detail at First</h5>
+                                  <form action="{% url 'home' %}" method="POST">
+                                    {% csrf_token %}
+                                  <div class="input-box">
+                                      <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Email">
+                                      <i class="fa-solid fa-envelope arrow"></i>
+                                      <button class="sub-btn  btn-animation">
+                                          <span class="d-sm-block d-none">Subscribe</span>
+                                          <i class="fa-solid fa-arrow-right icon"></i>
+                                      </button>
+                                  </div>
+                                </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+     </section>
+  <!-- Newsletter Section End -->
+    <!-- footer -->
+
+    <!-- Footer Section Start -->
+    <footer class="section-t-space footer-section-2 footer-color-3">
+      <div class="container-fluid-lg">
+        <div class="main-footer d-flex justify-content-center">
+          <div class="row g-md-4 gy-sm-5">
+            <div class="col-xxl-4 col-xl-4 col-sm-6 footer-align">
+              <a href="{% url 'home' %}" class="foot-logo theme-logo">
+                <img
+                  src="../../../static/assets/images/logo/logo2.png"
+                  class="img-fluid blur-up lazyload"
+                  alt=""
+                />
+              </a>
+              <p class="information-text information-text-2 ">
+                it is a long established fact that a reader will be distracted
+                by the readable content.
+              </p>
+              <ul class="social-icon">
+                <li class="light-bg">
+                  <a href="https://www.facebook.com/ZEBAInteriors "  target='_blank'  class="footer-link-color">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </li>
+                
+                <li class="light-bg">
+                  <a
+                    href="https://twitter.com/ZebaHomes"  target="_blank"
+                    class="footer-link-color"
+                  >
+                    <i class="fab fa-twitter"></i>
+                  </a>
+                </li>
+                <li class="light-bg">
+                  <a
+                    href="https://www.instagram.com/zeba_homes/"  target="_blank" 
+                    class="footer-link-color"
+                  >
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                </li>
+                <li class="light-bg">
+                  <a href="https://www.pinterest.com/zebainterior/"   target="_blank"class="footer-link-color">
+                    <i class="fab fa-pinterest-p"></i>
+                  </a>
+                </li>
+                <li class="light-bg">
+                  <a href="https://www.linkedin.com/company/zeba-home-interiors/"   target="_blank"class="footer-link-color">
+                    <i class="fab fa-linkedin"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-xxl-2 col-xl-4 col-sm-6 f-m-display">
+              <div class="footer-title">
+                <h4 class="text-white">About Zeba</h4>
+              </div>
+              <ul class="footer-list footer-contact footer-list-light">
+                <li>
+                  <a href="{% url 'aboutus' %}" class="light-text">About Us</a>
+                </li>
+                <li>
+                  <a href="{% url 'contactus' %}" class="light-text"
+                    >Contact Us</a
+                  >
+                </li>
+                <li>
+                  <a href="{% url 'terms_condition' %}" class="light-text"
+                    >Terms & Coditions</a
+                  >
+                </li>
+
+                <li>
+                  <a href="{% url 'articles' %}"class="light-text"
+                    >Latest Articles</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-xxl-2 col-xl-4 col-sm-6 f-m-display">
+              <div class="footer-title">
+                <h4 class="text-white">Useful Link</h4>
+              </div>
+              <ul class="footer-list footer-list-light footer-contact">
+                <li>
+                  <a href="{% url 'userprofile' %}?tab=orders" class="light-text">Your Order</a>
+                </li>
+                <li>
+                  <a href="{% url 'userprofile' %}" class="light-text"
+                    >Your Account</a
+                  >
+                </li>
+             
+                <li>
+                  <a href="{% url 'wishlist' %}" class="light-text">Your Wishlist</a>
+                </li>
+                <li>
+                  <a href="{% url 'faq' %}" class="light-text">FAQs</a>
+                </li>
+              </ul>
+            </div>
+
+           
+
+            <div class="col-xxl-3 col-xl-4 col-sm-6 f-m-display">
+              <div class="footer-title">
+                <h4 class="text-white">Store infomation</h4>
+              </div>
+              <ul class="footer-address footer-contact">
+                <li>
+                  <a  class="light-text">
+                    <div class="inform-box flex-start-box">
+                      <i data-feather="map-pin"></i>
+                      <p>Zeba - Home Interior, Bentley House, 202 Market Street, BD182BY, Shipley, UK</p>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a  class="light-text">
+                    <div class="inform-box">
+                      <i data-feather="phone"></i>
+                      <p>Call us: 01274 598894</p>
+                    </div>
+                  </a>
+                </li>
+
+                <li>
+                  <a href="mailto:info@zebahomes.co.uk" class="light-text">
+                    <div class="inform-box">
+                      <i data-feather="mail"></i>
+                      <p>Email Us: info@zebahomes.co.uk</p>
+                    </div>
+                  </a>
+                </li>
+
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-footer sub-footer-lite section-b-space section-t-space">
+          <div class="left-footer">
+            <p class="light-text">
+               Copyright ©2023 By ZEBA Home | All rights reserved - Design by <a href="https://himanicc.com/" target="_blank" style="color:white">Himani's CC</a>
+            </p>
+          </div>
+
+          <ul class="payment-box">
+            <li>
+              <img
+                src="../../../static/assets/images/icon/paymant/visa.png"
+                class="blur-up lazyload"
+                alt=""
+              />
+            </li>
+            <li>
+              <img
+                src="../../../static/assets/images/icon/paymant/discover.png"
+                alt=""
+                class="blur-up lazyload"
+              />
+            </li>
+            <li>
+              <img
+                src="../../../static/assets/images/icon/paymant/american.png"
+                alt=""
+                class="blur-up lazyload"
+              />
+            </li>
+            <li>
+              <img
+                src="../../../static/assets/images/icon/paymant/master-card.png"
+                alt=""
+                class="blur-up lazyload"
+              />
+            </li>
+            <li>
+              <img
+                src="../../../static/assets/images/icon/paymant/giro-pay.png"
+                alt=""
+                class="blur-up lazyload"
+              />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Tap to top start -->
+    <div class="theme-option">
+      <div class="back-to-top">
+        <a id="back-to-top" href="#">
+          <i class="fas fa-chevron-up"></i>
+        </a>
+      </div>
+    </div>
+    <!-- Tap to top end -->
+
+    <!-- Bg overlay Start -->
+    <div class="bg-overlay"></div>
+    <!-- Bg overlay End -->
+
+    <!-- latest jquery-->
+    <script src="../../../static/assets/js/jquery-3.6.0.min.js"></script>
+    <!-- jquery ui-->
+    <script src="../../../static/assets/js/jquery-ui.min.js"></script>
+    <!-- Bootstrap js-->
+    <script src="../../../static/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+    <script src="../../../static/assets/js/bootstrap/bootstrap-notify.min.js"></script>
+    <script src="../../../static/assets/js/bootstrap/popper.min.js"></script>
+
+    <!-- feather icon js-->
+    <script src="../../../static/assets/js/feather/feather.min.js"></script>
+    <script src="../../../static/assets/js/feather/feather-icon.js"></script>
+
+    <!-- Slick js-->
+    <script src="../../../static/assets/js/slick/slick.js"></script>
+    <script src="../../../static/assets/js/slick/slick-animation.min.js"></script>
+    <script src="../../../static/assets/js/slick/custom_slick.js"></script>
+   
+   
+    <!-- Auto Height Js -->
+    <script src="../../../static/assets/js/auto-height.js"></script>
+
+
+    <!-- Lazyload Js -->
+    <script src="../../../static/assets/js/lazysizes.min.js"></script>
+    <!-- Quantity js -->
+    <script src="../../../static/assets/js/quantity.js"></script>
+    <!-- script js -->
+    <script src="../../../static/assets/js/script.js"></script>
+
+     <!-- Timer Js -->
+     {% comment %} <script src="../../../static/assets/js/timer1.js"></script> {% endcomment %}
+
+     <!-- Sticky-bar js -->
+     
+    <!-- Quantity js -->
+    {% comment %} <script src="../../../static/assets/js/quantity-2.js"></script> {% endcomment %}
+
+    <!-- Zoom Js -->
+    {% comment %} <script src="../../../static/assets/js/jquery.elevatezoom.js"></script>
+    <script src="../../../static/assets/js/zoom-filter.js"></script> {% endcomment %}
+    
+    <!-- Price Range Js -->
+    <script src="../../../static/assets/js/ion.rangeSlider.min.js"></script>
+  <!-- WOW js -->
+  <script src="../../../static/assets/js/wow.min.js"></script>
+  <script src="../../../static/assets/js/custom-wow.js"></script>
+
+  
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <!--Custom scripts-->
+  <script>
+    const categoryList = document.getElementById("category-list");
+
+    fetch("http://127.0.0.1:8000/product/cat_list/")
+      .then((response) => response.json())
+      .then((data) => {
+        Object.entries(data).forEach(([cat, subcats]) => {
+
+          const cat_id =data[cat][0]["category_id"]
+
+          const li = document.createElement("li");
+          li.classList.add("onhover-category-list");
+
+          const categoryLink = document.createElement("a");
+          categoryLink.classList.add("category-name");
+          categoryLink.href = `/product/category-filter/${cat_id}`;
+
+          const holder = document.createElement("div");
+          holder.classList.add("holder");
+
+          const icon = document.createElement("i");
+          icon.classList.add("fa-solid", "fa-couch");
+
+          const h6 = document.createElement("h6");
+          h6.textContent = cat;
+
+          holder.appendChild(h6);
+
+          categoryLink.appendChild(holder);
+
+          const arrowIcon = document.createElement("i");
+          arrowIcon.classList.add("fa-solid", "fa-angle-right");
+
+          categoryLink.appendChild(arrowIcon);
+
+          li.appendChild(categoryLink);
+
+          const onhoverBox = document.createElement("div");
+          onhoverBox.classList.add("onhover-category-box", "w-100");
+
+          const list1 = document.createElement("div");
+          list1.classList.add("list-1");
+
+          const titleBox = document.createElement("div");
+          titleBox.classList.add("category-title-box");
+
+          const h5 = document.createElement("h5");
+          h5.textContent = cat;
+
+          titleBox.appendChild(h5);
+
+          list1.appendChild(titleBox);
+
+          const ul = document.createElement("ul");
+
+          subcats.forEach((subcat) => {
+            const li = document.createElement("li");
+
+            const cat_id =data[cat][0]["category_id"]
+
+            const a = document.createElement("a");
+            a.classList.add("h6");
+
+            const encodedSubcatName = encodeURIComponent(subcat.name);
+
+            a.href = `/product/category-filter/${cat_id}/?subCat=${encodedSubcatName}`;
+            a.textContent = subcat.name;
+
+            li.appendChild(a);
+            ul.appendChild(li);
+          });
+
+          list1.appendChild(ul);
+          onhoverBox.appendChild(list1);
+          li.appendChild(onhoverBox);
+
+          categoryList.appendChild(li);
+        });
+      })
+      .catch((error) => console.error(error));
+
+  </script>
+
+ 
+  </body>
+</html>
+ 

@@ -1,0 +1,268 @@
+{% extends 'template.html' %}
+{% block content %}
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>Cart</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Cart</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Cart Section Start -->
+    <section class="cart-section section-b-space">
+        <div class="container-fluid-lg">
+            <div class="row g-sm-5 g-3">
+                <div class="col-xxl-9">
+                    <div class="cart-table">
+                        <div class="table-responsive-xl">
+                            <table class="table">
+                                <tbody>
+                                    {% for pro in products %}
+                                    <tr class="product-box-contain">
+                                        <td class="product-detail">
+                                            <div class="product border-0">
+                                                <a href="{% url 'product_inside' pro.product.id %}" class="product-image">
+                                                    <img src="../../../media/{{pro.product.img}}"
+                                                        class="img-fluid blur-up lazyload" alt="">
+                                                </a>
+                                                <div class="product-detail">
+                                                    <a href="{% url 'product_inside' pro.product.id %}"class="text-content" ><span class="text-title "><b>{{pro.product.name}}</b> </span></a>
+
+                                                    <ul>
+                                                        <li class="name d-flex">
+                                                            {% if pro.sqp.color %}
+                                                                {% if pro.sqp.color_type == 'multi_color' %}
+                                                                <span class="m-1">colour: </span><span class="p-1 m-1" style="border:1px ">{{pro.cart.color}}</span>
+                                                                <span class="m-1">size : {{pro.sqp.size}}</span>
+
+                                                                {% else %}
+                                                                colour:{{pro.cart.color}}
+                                                                {% endif %}
+                                                            
+                                                            {% else %}
+                                                            size:{{pro.sqp.size}}
+                                                            {% endif %}
+                                                        </li>
+
+                                                    
+                                                        {% if pro.sqp.discount == True %}
+                                                        
+                                                    
+                                                        <li>
+                                                            <h5 class="text-content d-inline-block">Price :</h5>
+                                                            <span>£{{pro.sqp.discounted_price}}</span>
+                                                            
+                                                            <del class="text-content">£{{pro.sqp.price}}</del>
+                                                        </li>
+                                                        {% else %}
+                                                        <li>
+                                                            <h5 class="text-content d-inline-block">Price :</h5>
+                                                            <span>£{{pro.sqp.price}}</span>
+                                                            
+                                                        </li>
+
+                                                        {% endif %}
+
+                                                        {% for i in pro.product.charges.all %}
+                                                        {% if i.tax_percentage %}
+                                                        <li>
+                                                            <h6 class="text-content d-inline-block">{{i.name}} :</h6>
+                                                            <span>{{i.tax_percentage}}%</span>
+                                                            
+                                                        </li> 
+                                                        {% elif i.charges %}
+                                                        <li>
+                                                            <h6 class="text-content d-inline-block">{{i.name}} :</h6>
+                                                            <span>£ {{i.charges}}</span>
+                                                            
+                                                        </li> 
+
+                                                        {% endif %}
+                                                       
+                                                        {% endfor %}
+                   
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        <td class="price">
+                                            <h4 class="table-title text-content">Total Price</h4>
+                                            
+                                            <h5 >£<span class="og_price">{{pro.cart.total_price | floatformat:2 }}</span></h5>
+                                        </td>
+                                        
+                                        <td class="quantity">
+                                            <h4 class="table-title text-content">Qty</h4>
+                                            <div class="quantity-price">
+                                                <div class="cart_qty">
+                                                    <div class="input-group">
+                                                        <button type="button" class="btn qty-left-minus"
+                                                            data-type="minus" data-field="">
+                                                            <i class="fa fa-minus ms-0" aria-hidden="true"></i>
+                                                        </button>
+
+                                                        <input type="hidden" class='product_id' id ='product_id' value={{pro.product.id}}>
+                                                        <input type="hidden" class = 'sqp_id' id ='sqp_id' value={{pro.sqp.id}}>
+
+                                                        <input class="form-control input-number qty-input" id="qtyinput"  name="qty" type="text"
+                                                            name="quantity" value="{{pro.qty}}">
+                                                        <button type="button" class="btn qty-right-plus"
+                                                            data-type="plus" data-field="">
+                                                            <i class="fa fa-plus ms-0" aria-hidden="true"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                        {% comment %} <td class="subtotal">
+                                            <h4 class="table-title text-content">Total</h4>
+                                            £<h5 class="total_price">{{pro.sqp.price}}</h5>
+                                        </td> {% endcomment %}
+
+                                        <td class="save-remove">
+                                            <h4 class="table-title text-content">Action</h4>
+                                            <a class="remove close_button" href="{% url 'del_item' pro.cart.id %}">Remove</a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                   
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-3">
+                    <div class="summery-box p-sticky">
+                        <div class="summery-header">
+                            <h3>Cart Total</h3>
+                        </div>
+
+                        <div class="summery-contain">
+                            <form action="{% url 'show_cart' %}" method="POST">
+                                {% csrf_token %}
+                            <div class="coupon-cart">
+                                <h6 class="text-content mb-2">Coupon Apply</h6>
+                                {% if coupon == 'activate' %}
+                                <div class="mb-3 coupon-box input-group">
+                                    <input type="text"  class="form-control" disabled id="exampleFormControlInput1"
+                                    placeholder="Enter Coupon Code Here...">
+
+                                    <input type="hidden" name="status" value="remove">
+                                    <button type ="submit" class="btn-apply" style="background-color:red">Remove</button>
+                                </div>
+                                <span>Already Applied - <b>{{discount_cupons.code}}</b></span>
+                            </form>
+                                {% else %}
+
+                                <form action="{% url 'show_cart' %}" method="POST">
+                                    {% csrf_token %}
+                                <div class="mb-3 coupon-box input-group">
+                                        <input type="text" name="code" class="form-control" id="exampleFormControlInput1"
+                                        placeholder="Enter Coupon Code Here...">
+                                        <input type="hidden" name="status" value="apply">
+
+                                        <button type ="submit" class="btn-apply">Apply</button>
+                                    </div>
+                                </form>
+                                {% endif %}
+                            </div>
+                            <ul>
+                                <li>
+                                    <h4>Subtotal</h4>
+                                    <h4 class="price" id="sub_total_price">£{{sub_total|floatformat:2}}</h4>
+                                </li>
+
+                                <li>
+                                    <h4>Coupon Discount</h4>
+                                    <h4 class="price">(-) £{{coupon_dis}}</h4>
+                                </li>
+
+                                
+                            </ul>
+                        </div>
+
+                        <ul class="summery-total">
+                            <li class="list-total border-top-0">
+                                <h4>Total (USD)</h4>
+                                <h4 class="price  theme-color" id="gr_total_price">£{{total_price|floatformat:2}}</h4>
+                            </li>
+                        </ul>
+
+                        <div class="button-group cart-button">
+                            <ul>
+                                <li>
+                                    <button onclick="location.href = '{% url 'checkout' %}';"
+                                        class="btn btn-animation proceed-btn fw-bold">Process To Checkout</button>
+                                </li>
+
+                                <li>
+                                    <button onclick="location.href = '{% url 'allproducts' %}';"
+                                        class="btn btn-light shopping-button text-dark">
+                                        <i class="fa-solid fa-arrow-left-long"></i>Return To Shopping</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+<script>
+  
+
+                // Get all the plus and minus buttons and the quantity inputs
+  const plusButtons = document.querySelectorAll('.qty-right-plus');
+  const minusButtons = document.querySelectorAll('.qty-left-minus');
+  const quantityInputs = document.querySelectorAll('.qty-input');
+  
+  // Add an event listener to each plus button
+  plusButtons.forEach((plusButton, index) => {
+    const product_id = document.querySelectorAll('.product_id')[index].value;
+    const sqp_id = document.querySelectorAll('.sqp_id')[index].value;
+    plusButton.addEventListener('click', function() {
+      let currentQuantity = parseInt(quantityInputs[index].value);
+      currentQuantity++;
+      quantityInputs[index].value = currentQuantity;
+      window.location.href = `/add-to-cart/${product_id}/${sqp_id}/?status=UPDATE&qty=${currentQuantity}`;
+    });
+  });
+
+  // Add an event listener to each minus button
+  minusButtons.forEach((minusButton, index) => {
+    const product_id = document.querySelectorAll('.product_id')[index].value;
+    const sqp_id = document.querySelectorAll('.sqp_id')[index].value;
+    minusButton.addEventListener('click', function() {
+      let currentQuantity = parseInt(quantityInputs[index].value);
+      if (currentQuantity > 1) {
+        currentQuantity--;
+      }
+      quantityInputs[index].value = currentQuantity;
+      window.location.href = `/add-to-cart/${product_id}/${sqp_id}/?status=UPDATE&qty=${currentQuantity}`;
+    });
+  });
+
+</script>
+
+    <!-- Cart Section End -->
+    {% endblock content %}

@@ -1,0 +1,240 @@
+{% extends 'template.html' %}
+{% block content %}
+
+<style>
+    .newsletter{
+        display:none;
+    }
+</style>
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2 class="color">Help Desk</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Help Desk</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Contact Box Section Start -->
+    <section class="contact-box-section">
+        <div class="container-fluid-lg">
+            <div class="row g-lg-5 g-3">
+                <div class="col-lg-6">
+                    <div class="left-sidebar-box">
+                        <div class="row">
+                            <div class="col-xl-12">
+                                <div class="contact-image">
+                                    <img src="../../../static/assets/images/inner-page/contact-us.png"
+                                        class="img-fluid blur-up lazyloaded" style="color:#760718 !important" alt="">
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="contact-title">
+                                    <h3>Get In Touch</h3>
+                                </div>
+
+                                <div class="contact-detail">
+                                    <div class="row g-4">
+                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                            <div class="contact-detail-box">
+                                                <div class="contact-icon">
+                                                    <i class="fa-solid fa-phone"></i>
+                                                </div>
+                                                <div class="contact-detail-title">
+                                                    <h4>Phone</h4>
+                                                </div>
+
+                                                <div class="contact-detail-contain">
+                                                    <p>01274 598894</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                            <div class="contact-detail-box">
+                                                <div class="contact-icon">
+                                                    <i class="fa-solid fa-envelope"></i>
+                                                </div>
+                                                <div class="contact-detail-title">
+                                                    <h4>Email</h4>
+                                                </div>
+
+                                                <div class="contact-detail-contain">
+                                                    <a a href="mailto:info@zebahomes.co.uk" >info@zebahomes.co.uk</a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                            <div class="contact-detail-box">
+                                                <div class="contact-icon">
+                                                    <i class="fa-solid fa-location-dot"></i>
+                                                </div>
+                                                <div class="contact-detail-title">
+                                                    <h4> Showroom</h4>
+                                                </div>
+
+                                                <div class="contact-detail-contain">
+                                                    <p>Zeba - Home Interior, Bentley House, 202 Market Street, BD182BY, Shipley, UK</p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="title d-xxl-none d-block">
+                        <h2>Help Desk</h2>
+                    </div>
+                    <div class="right-sidebar-box">
+                        <form action="{% url 'contactus' %}" method="POST">
+                            {% csrf_token %}
+                        <div class="row">
+                            <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <div class="custom-input">
+                                        <input type="text" name="first_name" class="form-control" id="exampleFormControlInput"
+                                            placeholder="Enter First Name" value='{{request.user.first_name}}'>
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <div class="custom-input">
+                                        <input type="text" name="last_name"class="form-control" id="exampleFormControlInput1"
+                                            placeholder="Enter Last Name" value="{{request.user.last_name}}">
+                                        <i class="fa-solid fa-user"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <div class="custom-input">
+                                        <input type="email" name="email" class="form-control" id="exampleFormControlInput2"
+                                            placeholder="Enter Email Address" value="{{request.user.email}}">
+                                        <i class="fa-solid fa-envelope"></i>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-6 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <div class="custom-input">
+                                        <input type="tel" class="form-control" id="exampleFormControlInput3" name="phone_number"
+                                            placeholder="Enter Your Phone Number"value="{{request.user.phone}}">
+                                        <i class="fa-solid fa-mobile-screen-button"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <label for="exampleFormControlTextarea"  class="form-label">Isuue Related to</label>
+                                    <div class="custom-textarea">
+                                        <select class="form-select form-control" name="issue" aria-label="Default select example">
+                                            <option selected>Open this select menu</option>
+                                            <option value="Where is my order">Where is my order? </option>
+                                            <option value="Cancel or Update My Order">Cancel or Update My Order </option>
+                                            <option value="Issue Related to Product">Issue Related to Product</option>
+                                            <option value="Return and Refunds">Return and Refunds </option>
+                                            <option value="Other">Other</option>
+                                          </select>
+                                          <i class="fa-solid fa-select"></i>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <div class="custom-textarea">
+                                        <input type="text" name="product" class="form-control" value="{{order.serial_id}}" id="exampleFormControlInput2"
+                                        placeholder="Order Id">
+                                    <i class="fa-solid fa-list-alt"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-12">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <div class="custom-textarea">
+                                        <textarea name="message"class="form-control" id="exampleFormControlTextarea"
+                                            placeholder="Enter Your Message" rows="6"></textarea>
+                                        <i class="fa-solid fa-message"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-animation btn-md fw-bold ms-auto" style="background-color: #760718 !important">Send Message</button>
+                    </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Box Section End -->
+
+    <!-- Map Section Start -->
+    <section class="map-section">
+        <div class="container-fluid p-0">
+            <div class="map-box">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2354.632494941741!2d-1.7764476999999999!3d53.83161349999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487be469a31ddb93%3A0x6038b716e97641d!2sZEBA%20-%20Home%20Interiors!5e0!3m2!1sen!2sin!4v1686693692829!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+    <!-- Map Section End -->
+
+    <section class="newsletter-section section-b-space">
+        <div class="container-fluid-lg">
+            <div class="newsletter-box newsletter-box-2">
+                <div class="newsletter-contain py-5">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-xxl-4 col-lg-5 col-md-7 col-sm-9 offset-xxl-2 offset-md-1">
+                                <div class="newsletter-detail">
+                                    <h2>Career...</h2>
+                                    <h5>New Arriving Products Detail at First</h5>
+                                    <form action="{% url 'home' %}" method="POST">
+                                      {% csrf_token %}
+                                    <div class="input-box">
+                                        <input type="email" name="email" class="form-control" id="exampleFormControlInput1" placeholder="Enter Your Email">
+                                        <i class="fa-solid fa-envelope arrow"></i>
+                                        <button class="sub-btn  btn-animation">
+                                            <span class="d-sm-block d-none">Subscribe</span>
+                                            <i class="fa-solid fa-arrow-right icon"></i>
+                                        </button>
+                                    </div>
+                                  </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+       </section>
+
+
+    {% endblock content %}

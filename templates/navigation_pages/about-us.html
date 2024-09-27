@@ -1,0 +1,163 @@
+{% extends "template.html" %}
+{% block content %}
+
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>About Us</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">About Us</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Fresh Vegetable Section Start -->
+    <section class="fresh-vegetable-section section-lg-space">
+        <div class="container-fluid-lg">
+            <div class="row gx-xl-5 gy-xl-0 g-3 ratio_148_1">
+                
+
+                <div class="col-xl-12 col-12">
+                    <div class="fresh-contain p-center-left">
+                        <div>
+                            
+
+                            <div class="delivery-list">
+                                <p class="text-content"><b>ZEBA</b>  has gone through many changes since its inception, but in every step of
+                                    the way we haven’t lost touch with what&#39;s important to our customers - Luxury
+                                    Style and Quality Service.</p>
+                                
+                                <p>
+                                    We initially started with a retail store from Salts Mill, world heritage site in
+                                    Saltaire offering customer co-ordinated range of home furnishings and
+                                    handmade floor coverings, bringing designer style and expert knowledge to
+                                    every home.
+                                </p>
+                                
+                                <p>
+                                    <b>ZEBA</b> designs its own collections as well as creates products based on trend
+                                    specific inputs from its customers. We believe we have a fine tuned capability of
+                                    interpreting and translating into reality customers brief which makes it unique
+                                    and truly bespoke.
+                                </p>
+                                <p>
+                                    We would like to welcome you all to our new showroom in Shipley (Bentley
+                                    House, 202 Market Street, Shipley, West Yorkshire, BD18 2BY) where you can
+                                    browse through a wide range of designers fabrics, wallpapers, handmade rugs,
+                                    carpets, wood flooring. curtains, blinds, furniture, accessories and many more
+                                    products.
+                                </p>
+                                <p>
+                                    Our Contract division caters to hotel industry, restaurants, residential homes,
+                                    luxury homes and corporate offices. <br>
+                                    We specialise in bespoke services such as made to order rugs, carpets,
+                                    curtains, blinds and re-upholstery.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Fresh Vegetable Section End -->
+
+  
+
+    
+
+    <!-- Review Section Start -->
+    <section class="review-section section-lg-space">
+        <div class="container-fluid">
+            <div class="about-us-title text-center">
+                <h4 class="text-content">Latest Testimonals</h4>
+                <h2 class="center">What people say</h2>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="container row g-sm-4 g-3 row-cols-xxl-3 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+
+                        {% for review in reviews %}
+                        
+                            <div class="reviewer-box card">
+                                <i class="fa-solid fa-quote-right"></i>
+                                <h5>Product : <a href="{% url 'product_inside' review.product.id %}">{{review.product.name}}</a></h5>
+                                
+                                <br>
+                                <p>"{{review.comment}}"</p>
+
+                                <div class="reviewer-profile">
+                                   
+
+                                    <div class="reviewer-name">
+                                        <h4>{{review.user.first_name}} {{review.user.last_name}}</h4>
+                                        <h6>{{review.created_at}}</h6>
+                                    </div>
+                                </div>
+                        </div>
+                        {% endfor %}
+
+                        
+
+                        
+                    </div>
+                    
+                    <nav class="custome-pagination">
+                        {% if reviews.has_other_pages %}
+                         <ul class="pagination justify-content-center">
+                            {% if reviews.has_previous %}
+
+                            <li class="page-item disabled">
+                                <a class="page-link" href="?page={{ reviews.previous_page_number }}" tabindex="-1" aria-disabled="true">
+                                    <i class="fa-solid fa-angles-left"></i>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="disabled page-item"><i class=""></i></li>
+                            {% endif %} 
+                            
+                            {% for i in reviews.paginator.page_range %} 
+                            {% if reviews.number == i %}
+                            <li class="page-item active">
+                                 <a class="page-link">{{ i }}</a>
+                            </li>
+                            {% else %}
+                            <li class="next page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %} 
+                            {% endfor %} 
+
+
+                            {% if reviews.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ posts.next_page_number }}">
+                                    <i class="fa-solid fa-angles-right"></i>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="disabled page-item"><i class="bi bi-caret-right-fill"></i></li>
+                        </ul> 
+                        {% endif %}
+                        {% endif %}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Review Section End -->
+
+
+    {% endblock content %}

@@ -1,0 +1,9 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<h1>Payment Form</h1>
+<form method="post" action="{% url 'payment' %}">
+  {% csrf_token %}
+  <input type="submit" value="Pay Now">
+</form>
+{% endblock %}

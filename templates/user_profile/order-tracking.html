@@ -1,0 +1,261 @@
+{% extends 'template.html' %}
+
+    {% block content %}
+    
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>Order Tracking Id : {{order.serial_id}}</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Order Tracking</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Order Detail Section Start -->
+    <section class="order-detail">
+        <div class="container-fluid-lg">
+            <div class="row g-sm-4 g-3">
+               
+
+                <div class="col-xxl-12 col-xl-8 col-lg-6">
+                    <div class="row g-sm-4 g-3">
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="order-details-contain">
+                                <div class="order-tracking-icon">
+                                    <i data-feather="package" class="text-content"></i>
+                                </div>
+
+                                <div class="order-details-name">
+                                    <h5 class="text-content">Order Id</h5>
+                                    <h2 class="theme-color">{{order.serial_id}}</h2>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="order-details-contain">
+                                <div class="order-tracking-icon">
+                                    <i data-feather="truck" class="text-content"></i>
+                                </div>
+
+                                <div class="order-details-name">
+                                    <h5 class="text-content">Service Provide</h5>
+                                    <img src="../../../static/assets/images/inner-page/brand-name.svg"
+                                        class="img-fluid blur-up lazyload" alt="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="order-details-contain">
+                                <div class="order-tracking-icon">
+                                    <i class="text-content" data-feather="info"></i>
+                                </div>
+
+                                <div class="order-details-name">
+                                    <h5 class="text-content">Tracking Id</h5>
+                                    <h4>{{order.tracking_id}}</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="order-details-contain">
+                                <div class="order-tracking-icon">
+                                    <i class="text-content" data-feather="crosshair"></i>
+                                </div>
+
+                                <div class="order-details-name">
+                                    <h5 class="text-content">From</h5>
+                                    <h4>Zeba - Home Interior, Bentley House, 202 Market Street, BD182BY, Shipley, UK</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="order-details-contain">
+                                <div class="order-tracking-icon">
+                                    <i class="text-content" data-feather="map-pin"></i>
+                                </div>
+
+                                <div class="order-details-name">
+                                    <h5 class="text-content">Destination</h5>
+                                    <h4>{{order.address_line_1}}</h4>
+                                    <h4>{{order.address_line_2}},{{order.city}}</h4>
+                                    <h4>{{order.state}},{{order.country}}-{{order.postal_code}}</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-4 col-sm-6">
+                            <div class="order-details-contain">
+                                <div class="order-tracking-icon">
+                                    <i class="text-content" data-feather="calendar"></i>
+                                </div>
+
+                                <div class="order-details-name">
+                                    <h5 class="text-content">Estimated Time</h5>
+                                    <h4>{{order.expected_date}}</h4>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 overflow-hidden">
+                            <ol class="progtrckr">
+                                                    
+                                <li class="progtrckr-todo" id="1">
+                                    <h5>Order Processing</h5>
+                                    <h6>Done</h6>
+
+                                </li>
+                                <li class="progtrckr-todo" id="2">
+                                    <h5>Pre-Production</h5>
+                                    <h6>Done</h6>
+
+                                </li>
+                                <li class="progtrckr-todo" id="3">
+                                    <h5>In Production</h5>
+                                    <h6>Processing</h6>
+                                </li>
+                                <li class="progtrckr-todo" id ="4">
+                                    <h5>Shipped</h5>
+                                    <h6>Pending</h6>
+                                </li>
+                                <li class="progtrckr-todo" id="5">
+                                    <h5>Delivered</h5>
+                                    <h6>Pending</h6>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Order Detail Section End -->
+
+    {% comment %} <!-- Order Table Section Start -->
+    <section class="order-table-section section-b-space">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table order-tab-table">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Date</th>
+                                    <th>Time</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Order Placed</td>
+                                    <td>26 Sep 2021</td>
+                                    <td>12:00 AM</td>
+                                    <td>California</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Preparing to Ship</td>
+                                    <td>03 Oct 2021</td>
+                                    <td>12:00 AM</td>
+                                    <td>Canada</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Shipped</td>
+                                    <td>04 Oct 2021</td>
+                                    <td>12:00 AM</td>
+                                    <td>America</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Delivered</td>
+                                    <td>10 Nav 2021</td>
+                                    <td>12:00 AM</td>
+                                    <td>Germany</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+    <!-- Order Table Section End -->
+
+
+    <script>
+        window.onload = function () {
+            // Get the delivery status from the context passed by Django
+            var order_status = "{{ order.delivery_status }}";
+            if(order_status == 'Order Processing'){
+                document.getElementById('1').classList.remove('progtrckr-todo');
+                document.getElementById('1').classList.add('progtrckr-done');
+            }
+
+            if(order_status == 'Pre-Production'){
+                document.getElementById('1').classList.remove('progtrckr-todo');
+                document.getElementById('1').classList.add('progtrckr-done');
+                document.getElementById('2').classList.remove('progtrckr-todo');
+                document.getElementById('2').classList.add('progtrckr-done');
+
+
+            }
+
+            if(order_status == 'In Production'){
+                document.getElementById('1').classList.remove('progtrckr-todo');
+                document.getElementById('1').classList.add('progtrckr-done');
+                document.getElementById('2').classList.remove('progtrckr-todo');
+                document.getElementById('2').classList.add('progtrckr-done');
+                document.getElementById('3').classList.remove('progtrckr-todo');
+                document.getElementById('3').classList.add('progtrckr-done');
+            }
+
+            if(order_status == 'Shipped'){
+                document.getElementById('1').classList.remove('progtrckr-todo');
+                document.getElementById('1').classList.add('progtrckr-done');
+                document.getElementById('2').classList.remove('progtrckr-todo');
+                document.getElementById('2').classList.add('progtrckr-done');
+                document.getElementById('3').classList.remove('progtrckr-todo');
+                document.getElementById('3').classList.add('progtrckr-done');
+                document.getElementById('4').classList.remove('progtrckr-todo');
+                document.getElementById('4').classList.add('progtrckr-done');
+            }
+
+            if(order_status == 'Delivered'){
+                document.getElementById('1').classList.remove('progtrckr-todo');
+                document.getElementById('1').classList.add('progtrckr-done');
+                document.getElementById('2').classList.remove('progtrckr-todo');
+                document.getElementById('2').classList.add('progtrckr-done');
+                document.getElementById('3').classList.remove('progtrckr-todo');
+                document.getElementById('3').classList.add('progtrckr-done');
+                document.getElementById('4').classList.remove('progtrckr-todo');
+                document.getElementById('4').classList.add('progtrckr-done');
+                document.getElementById('5').classList.remove('progtrckr-todo');
+                document.getElementById('5').classList.add('progtrckr-done');
+           
+            }
+
+           console.log(order_status)
+        };
+    </script>
+    {% endblock content %}
+    

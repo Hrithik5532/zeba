@@ -1,0 +1,461 @@
+{% extends 'template.html' %}
+{% block content %}
+    <!-- Breadcrumb Section Start -->
+
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>User Dashboard</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">User Dashboard</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- User Dashboard Section Start -->
+    <section class="user-dashboard-section section-b-space">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-xxl-3 col-lg-4">
+                    <div class="dashboard-left-sidebar">
+                        <div class="close-button d-flex d-lg-none">
+                            <button class="close-sidebar">
+                                <i class="fa-solid fa-xmark"></i>
+                            </button>
+                        </div>
+                        <div class="profile-box">
+                            {% comment %} <div class="cover-image">
+                                <img src="../../../static/assets/images/inner-page/cover-img.jpg" class="img-fluid blur-up lazyload"
+                                    alt="">
+                            </div> {% endcomment %}
+
+                            <div class="profile-contain">
+                           
+
+                                <div class="profile-name">
+                                    <h3>{{request.user.first_name}} {{request.user.last_name}}</h3>
+                                    <h6 class="text-content">{{request.user.email}}</h6>
+                                </div>
+                            </div>
+                        </div>
+
+                        <ul class="nav nav-pills user-nav-pills" id="pills-tab" role="tablist">
+                            
+                            <li class="nav-item " role="presentation">
+                                <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-profile" type="button" role="tab"
+                                    aria-controls="pills-profile" aria-selected="false"><i data-feather="user"></i>
+                                    Profile</button>
+                            </li>
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-order-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-order" type="button" role="tab" aria-controls="pills-order"
+                                    aria-selected="false"><i data-feather="shopping-bag"></i>Orders</button>
+                            </li>
+
+                          
+
+                            <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-address-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-address" type="button" role="tab"
+                                    aria-controls="pills-address" aria-selected="false"><i data-feather="map-pin"></i>
+                                    Address</button>
+                            </li>
+
+                          
+
+                            {% comment %} <li class="nav-item" role="presentation">
+                                <button class="nav-link" id="pills-security-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-security" type="button" role="tab"
+                                    aria-controls="pills-security" aria-selected="false"><i data-feather="shield"></i>
+                                    Privacy</button>
+                            </li> {% endcomment %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-xxl-9 col-lg-8">
+                    <button class="btn left-dashboard-show btn-animation btn-md fw-bold d-block mb-4 d-lg-none">Show
+                        Menu</button>
+                    <div class="dashboard-right-sidebar">
+                        <div class="tab-content" id="pills-tabContent">
+
+                            
+                            <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
+                                aria-labelledby="pills-profile-tab">
+                                <div class="dashboard-profile">
+                                    <div class="title">
+                                        <h2>My Profile </h2>
+                                        <span class="title-leaf">
+                                            <svg class="icon-width bg-gray">
+                                                <use xlink:href="../../../static/assets/svg/leaf.svg#leaf"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+
+                                    {% comment %} <div class="profile-detail dashboard-bg-box">
+                                        <div class="dashboard-title">
+                                            <h3>Profile Name</h3>
+                                        </div>
+                                        <div class="profile-name-detail">
+                                            <div class="d-sm-flex align-items-center d-block">
+                                                <h3>{{request.user.first_name}} {{request.user.last_name}}</h3>
+                                                <div class="product-rating profile-rating">
+                                                    <ul class="rating">
+                                                        <li>
+                                                            <i data-feather="star" class="fill"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i data-feather="star" class="fill"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i data-feather="star" class="fill"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i data-feather="star"></i>
+                                                        </li>
+                                                        <li>
+                                                            <i data-feather="star"></i>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+
+                                            <a href="javascript:void(0)" data-bs-toggle="modal"
+                                                data-bs-target="#editProfile">Edit</a>
+                                        </div>
+
+                                        <div class="location-profile">
+                                            <ul>
+                                               
+
+                                                <li>
+                                                    <div class="location-box">
+                                                        <i data-feather="mail"></i>
+                                                        <h6>{{request.user.email}}</h6>
+                                                    </div>
+                                                </li>
+
+                                          
+                                            </ul>
+                                        </div>
+
+                                        <div class="profile-description">
+                                            <p>Residences can be classified by and how they are connected to
+                                                neighbouring residences and land. Different types of housing tenure can
+                                                be used for the same physical type.</p>
+                                        </div>
+                                    </div> {% endcomment %}
+
+                                    <div class="profile-about dashboard-bg-box">
+                                        <div class="row">
+                                            <div class="col-xxl-7">
+                                                <div class="dashboard-title mb-3">
+                                                    <h3>Profile About </h3>
+                                                    <a href="{% url 'Update_Profile' %}" > Edit
+                                                        <i class="fa-solid fa-pen"></i>
+                                                        </a>
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Gender :</td>
+                                                                <td>{{request.user.gender}}</td>
+                                                            </tr>
+                                                           
+                                                            <tr>
+                                                                <td>Phone Number :</td>
+                                                                <td>
+                                                                    <a href="javascript:void(0)">{{request.user.phone}}</a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Address :</td>
+                                                                {% for address in addresses %}
+                                                                {% if address.is_default %}
+                                                                <td>{{address.address_line_1}},<br>{{address.address_line_2}},<br>{{address.city}},<br>{{address.state}},<br>{{address.country}},<br>{{address.postal_code}}</td>
+                                                                {% endif %}
+                                                                {% endfor %}
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                                <div class="dashboard-title mb-3">
+                                                    <h3>Login Details</h3>
+                                                </div>
+
+                                                <div class="table-responsive">
+                                                    <table class="table">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td>Email :</td>
+                                                                <td>
+                                                                    <a >{{request.user.email}}
+                                                                      </a>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>Password :</td>
+                                                                <td class="d-flex">
+                                                                    <span>●●●●●●</span>
+                                                                    <a href="{% url 'forgot_password' %}">
+                                                                     <span> Reset</span></a>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-xxl-5">
+                                                <div class="profile-image">
+                                                    <img src="../../../static/assets/images/inner-page/dashboard-profile.png"
+                                                        class="img-fluid blur-up lazyload" alt="">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                         
+                            <div class="tab-pane fade show" id="pills-order" role="tabpanel"
+                                aria-labelledby="pills-order-tab">
+                                <div class="dashboard-order">
+                                    <div class="title">
+                                        <h2>My Orders History</h2>
+                                        <span class="title-leaf title-leaf-gray">
+                                            <svg class="icon-width bg-gray">
+                                                <use xlink:href="../../../static/assets/svg/leaf.svg#leaf"></use>
+                                            </svg>
+                                        </span>
+                                    </div>
+
+                                    <div class="order-contain">
+                                        {% for order in orders %}
+                                        <div class="order-box dashboard-bg-box">
+                                            <div class="order-container">
+                                                <div class="order-icon">
+                                                    <i data-feather="box"></i>
+                                                </div>
+                                                {% if order.order_return %}
+                                                <div class="order-detail">
+                                                    <h4>Order Return <span>Initiated</span></h4>
+                                                    
+                                                </div>
+                                                {% else %}
+                                                <div class="order-detail">
+                                                    <h4>Delivere <span>Panding</span></h4>
+                                                    
+                                                </div>
+                                                {% endif %}
+                                               
+
+                                            </div>
+                                                <h4>Track Id : #{{order.serial_id}}</h4>
+                                                {% if order.order_return %}
+                                                {% else %}
+                                                <h3>Track Order :  <a href="{% url 'track_order' %}?id={{order.serial_id}}"><span class="bg-color-theme">View </span></a></h3> 
+                                                
+                                                <h3>Return :  <a href="{% url 'return_product' %}?id={{order.serial_id}}"><span class="bg-color-theme">View </span></a></h3> 
+                                                {% endif %}
+                                                <h3>Rise Query :  <a href="{% url 'contactus' %}?id={{order.serial_id}}"><span class="bg-color-theme">View </span></a></h3> 
+                                                {% for pro in order.order_items.all %}
+
+                                            <div class="product-order-detail ">
+                                                <a href="{% url 'product_inside' pro.product.id %}" class="order-image" style="width:20%">
+                                                    <img src="../../../media/{{pro.product.img}}"
+                                                        class="blur-up lazyload w-100" alt="" >
+                                                </a>
+                                                <div class="order-wrap">
+                                                    <a href="{% url 'product_inside' pro.product.id %}">
+                                                        <h3>{{pro.product.name}}</h3>
+                                                    </a>
+                                                   
+                                                    <ul class="product-size">
+                                                        <li>
+                                                            <div class="size-box">
+                                                                <h6 class="text-content">Price : </h6>
+                                                                <h5>£{{pro.price}}</h5>
+                                                            </div>
+                                                        </li>
+
+                                                      
+
+                                                      
+
+                                                        <li>
+                                                            <div class="size-box">
+                                                                <h6 class="text-content">Quantity : </h6>
+                                                                <h5>{{pro.quantity}}</h5>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            {% endfor %}
+                                            
+                                        </div>
+
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade show" id="pills-address" role="tabpanel"
+                                aria-labelledby="pills-address-tab">
+                                <div class="dashboard-address">
+                                    <div class="title title-flex">
+                                        <div>
+                                            <h2>My Address Book</h2>
+                                            <span class="title-leaf">
+                                                <svg class="icon-width bg-gray">
+                                                    <use xlink:href="../../../static/assets/svg/leaf.svg#leaf"></use>
+                                                </svg>
+                                            </span>
+                                        </div>
+
+                                        <button class="btn theme-bg-color text-white btn-sm fw-bold mt-lg-0 mt-3"
+                                            data-bs-toggle="modal" data-bs-target="#add-address"><i data-feather="plus"
+                                                class="me-2"></i> <a href="{% url 'address_add' %}" class="text-white">Add New Address</a></button>
+                                    </div>
+
+                                    <div class="row g-sm-4 g-3">
+                                        {% for add in addresses %}
+                                        <div class="col-xxl-4 col-xl-6 col-lg-12 col-md-6">
+                                            <div class="address-box">
+                                                <div>
+                                                    {% if add.is_default %}
+                                                   
+
+                                                    <div class="label">
+                                                        <label>Default</label>
+                                                    </div>
+                                                    {% endif %}
+
+                                                    <div class="table-responsive address-table">
+                                                        <table class="table">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td colspan="2">{{add.name}}</td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>Address :</td>
+                                                                    <td>
+                                                                        <p>{{add.address_line_1}},<br>{{add.address_line_2}}
+                                                                        </p>
+                                                                    </td>
+                                                                </tr>
+
+                                                                <tr>
+                                                                    <td>City</td>
+                                                                    <td>{{add.city}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>State</td>
+                                                                    <td>{{add.state}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Country :</td>
+                                                                    <td>{{add.country}}</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td>Pin Code :</td>
+                                                                    <td>{{add.postal_code}}</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                                <div class="button-group">
+                                                    <button class="btn btn-sm add-button w-100" onclick="location.href='{% url 'address_crud' add.id 'UPDATE' %}'" ><i data-feather="edit"></i>
+                                                    Edit</button>
+                                                    
+                                                        
+                                                            <button onclick="location.href='{% url 'address_crud' add.id 'delete' %}'"  class="btn btn-sm add-button w-100" ><i data-feather="trash-2"></i>
+                                                        Remove</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                       
+                                    </div>
+                                </div>
+                            </div>
+  
+                            <div class="tab-pane fade show" id="pills-security" role="tabpanel"
+                                aria-labelledby="pills-security-tab">
+                                <div class="dashboard-privacy">
+                                
+
+                                    <div class="dashboard-bg-box mt-4">
+                                        <div class="dashboard-title mb-4">
+                                            <h3>Account settings</h3>
+                                        </div>
+
+                                        <div class="privacy-box">
+                                            <div class="d-flex align-items-start">
+                                                <h6>Deleting Your Account Will Permanently</h6>
+                                                
+                                            </div>
+                                            <p class="text-content">Once your account is deleted, you will be logged out
+                                                and will be unable to log in back.</p>
+                                        </div>
+
+                                        
+
+                                        <button class="btn theme-bg-color btn-md fw-bold mt-4 text-white">Delete My
+                                            Account</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        // Function to get URL parameters
+        function getUrlParam(param) {
+            var urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+    
+        // Check if the 'tab' parameter is present in the URL
+        var tabParam = getUrlParam('tab');
+        if (tabParam === 'orders') {
+            // Remove 'active' class from all tab links
+            var tabLinks = document.getElementsByClassName('nav-link');
+            for (var i = 0; i < tabLinks.length; i++) {
+                tabLinks[i].classList.remove('active');
+            }
+    
+            // Activate the 'Orders' tab
+            document.getElementById('pills-order-tab').classList.add('active');
+            document.getElementById('pills-order').classList.add('show', 'active');
+
+            document.getElementById('pills-profile').classList.remove('active','show')
+        }
+    </script>
+    
+    <!-- User Dashboard Section End -->
+    {% endblock content %}

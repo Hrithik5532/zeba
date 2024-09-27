@@ -1,0 +1,147 @@
+{% extends 'template.html' %}
+
+{% block content %}
+   
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>{{title}}</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Contact Box Section Start -->
+    <section class="contact-box-section">
+        <div class="container-fluid-lg">
+            <div class="row g-lg-5 g-3">
+                
+
+                <div class="col-lg-12">
+                    <form action="{% url 'Update_Profile' %}" method ="POST">
+                    {% csrf_token %}
+                        <div class="right-sidebar-box">
+                        <div class="row">
+                            <div class="col-xxl-2 col-lg-8 col-sm-2">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <label for="exampleFormControlInput" class="form-label">First Name</label>
+                                    <div class="custom-input">
+                                        <input type="text" name="first_name" class="form-control" id="exampleFormControlInput"
+                                            value="{{request.user.first_name}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-2 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <label for="exampleFormControlInput1" class="form-label">Last Name</label>
+                                    <div class="custom-input">
+                                        <input type="text" name="last_name" class="form-control" id="exampleFormControlInput1"
+                                            value="{{request.user.last_name}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-2 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <label for="exampleFormControlInput2" class="form-label">Contact Number</label>
+                                    <div class="custom-input">
+                                        <input type="text" name="contact" class="form-control" id="exampleFormControlInput2"
+                                            value="{{request.user.phone}}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-xxl-3 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <label for="exampleFormControlInput3" class="form-label">Gender</label>
+                                    <div class="custom-input">
+                                        
+                                            <select name="gender" id="gender" class="form-control" id="exampleFormControlInput3">
+                                                {% if request.user.gender == 'Male' %}
+                                                
+                                                <option value="Male" selected>Male</option>
+                                                
+                                                <option value="Female">Female</option>
+                                                <option value="Ohter">Ohter</option>
+
+
+                                                {% elif request.user.gender == 'Female' %}
+                                                <option value="Female" selected>Female</option>
+                                                <option value="Male" >Male</option>
+                                                <option value="Ohter">Ohter</option>
+                                                {% elif request.user.gender == 'Other' %}
+                                                <option value="Ohter" selected>Ohter</option>
+                                                <option value="Male" >Male</option>
+                                                <option value="Female">Female</option>
+                                                {% else %}
+                                                
+                                                <option value="Male" >Male</option>
+                                                <option value="Female">Female</option>
+                                                <option value="Ohter">Ohter</option>
+                                                {% endif %}
+                                              </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-lg-12 col-sm-6">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <label for="exampleFormControlInput3" class="form-label">Email</label>
+                                    <div class="custom-input">
+                                        <input type="text" name="email"class="form-control" id="exampleFormControlInput3"
+                                            value="{{request.user.email}}" disabled>
+                                    </div>
+                                    <button id="change_email_button" class="change-email-button btn" type="button" onclick="changeEmail()">Change Email
+                                        <i class="fa-solid fa-pen"></i>
+                                    </button>
+
+                                </div>
+                            </div>
+                            <div class="col-xxl-4 col-lg-12 col-sm-6 d-none" id="new_email_div">
+                                <div class="mb-md-4 mb-3 custom-form">
+                                    <label for="exampleFormControlInput3" class="form-label">New Email</label>
+                                    <div class="custom-input">
+                                        <input type="text" name="new_email"class="form-control" id="exampleFormControlInput3"
+                                             >
+                                    </div>
+                                   
+                                        
+
+                                </div>
+                            </div>
+                            
+                           
+                            
+                        </div>
+                        <button class="btn btn-animation btn-md fw-bold ms-auto">Update</button>
+                    </div>
+                   </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function changeEmail() {
+            document.getElementById('new_email_div').classList.remove('d-none');
+            document.getElementById('new_email_div').classList.add('d-block');
+            console.log("!!!!!!!!!!!!!")
+        }
+    </script>
+    <!-- Contact Box Section End -->
+    {% endblock content %}

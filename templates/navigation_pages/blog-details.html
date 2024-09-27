@@ -1,0 +1,239 @@
+{% extends "template.html" %}
+{% block content %}
+
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>{{article.name}}</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="{% url 'articles' %}">
+                                    Articles
+                                </a></li>
+                                <li class="breadcrumb-item active" aria-current="page">{{article.name}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Blog Details Section Start -->
+    <section class="blog-section section-b-space">
+        <div class="container-fluid-lg">
+            <div class="row g-sm-4 g-3">
+                <div class="col-xxl-3 col-xl-4 col-lg-5 d-lg-block d-none">
+                    <div class="left-sidebar-box">
+
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                    aria-controls="panelsStayOpen-collapseThree">
+                                    Product Tags
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse collapse show"
+                                aria-labelledby="panelsStayOpen-headingThree">
+                                <div class="accordion-body pt-0">
+                                    <div class="product-tags-box">
+                                        <ul>
+                                            {% for tag in tags %}
+                                            <li>
+                                                <a href="{% url 'articles' %}?tag={{tag.name}}">{{tag.name}}</a>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                     
+
+                        <div class="accordion left-accordion-box" id="accordionPanelsStayOpenExample">
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true"
+                                        aria-controls="panelsStayOpen-collapseOne">
+                                        Recent Post
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="panelsStayOpen-headingOne">
+                                    <div class="accordion-body pt-0">
+                                        {% for article in articles %}
+                                        <div class="recent-post-box">
+                                            <div class="recent-box">
+                                                <a href="{% url 'article_details' article.id %}" class="recent-image">
+                                                    <img src="../../../media/{{article.thumbnail}}"
+                                                        class="img-fluid blur-up lazyload" alt="">
+                                                </a>
+
+                                                <div class="recent-detail">
+                                                    <a href="{% url 'article_details' article.id %}">
+                                                        <h5 class="recent-name">{{article.name}}</h5>
+                                                    </a>
+                                                    <h6>{{article.created_at}} </h6>
+                                                </div>
+                                            </div>
+                                            
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                                <a href="{% url 'articles' %}">View All >></a>
+                            </div>
+
+                    
+
+                            {% comment %} <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseThree">
+                                        Product Tags
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse collapse show"
+                                    aria-labelledby="panelsStayOpen-headingThree">
+                                    <div class="accordion-body pt-0">
+                                        <div class="product-tags-box">
+                                            <ul>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">Fruit Cutting</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">Meat</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">organic</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">cake</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">pick fruit</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">backery</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">organix food</a>
+                                                </li>
+
+                                                <li>
+                                                    <a href="javascript:void(0)">Most Expensive Fruit</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> {% endcomment %}
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false"
+                                        aria-controls="panelsStayOpen-collapseFour">
+                                        Top Selling Products
+                                    </button>
+                                </h2>
+                                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse collapse show"
+                                    aria-labelledby="panelsStayOpen-headingFour">
+                                    <div class="accordion-body">
+                                        <ul class="product-list product-list-2 border-0 p-0">
+                                            {% for pro in top_selling_products  %}
+                                            <li>
+                                                <div class="offer-product">
+                                                    <a href="{% url 'product_inside' pro.id %}" class="offer-image">
+                                                        <img src="../../../media/{{pro.img}}"
+                                                            class="blur-up lazyload" alt="">
+                                                    </a>
+
+                                                    <div class="offer-detail">
+                                                        <div>
+                                                            <a href="{% url 'product_inside' pro.id %}">
+                                                                <h6 class="name">{{pro.name}}</h6>
+                                                            </a>
+                                                            <span>Varients Available: {{pro.size_quantity_price.all.count}}</span>
+                                                            {% for sqp in pro.size_quantity_price.all %}
+                                                            {% if forloop.counter == 1 %}
+                                                            <h6 class="price theme-color">Start at : £ {{sqp.price}} </h6>
+                                                            
+                                                            {% endif %}
+                                                            {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            {% endfor %}
+                                        </ul>
+                                        <a href="{% url 'allproducts' %}">View All >></a>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-9 col-xl-8 col-lg-7 ratio_50">
+                    <div class="blog-detail-image rounded-3 mb-4">
+                        <img src="../../../media/{{article.thumbnail}}" class="bg-img blur-up lazyload" alt="">
+                        <div class="blog-image-contain">
+                            
+                            <h2>{{article.name}}</h2>
+                            <ul class="contain-comment-list">
+                                <li>
+                                    <div class="user-list">
+                                        <i data-feather="user"></i>
+                                        <span>{{article.writer}}</span>
+                                    </div>
+                                </li>
+
+                                <li>
+                                    <div class="user-list">
+                                        <i data-feather="calendar"></i>
+                                        <span>{{article.created_at}}</span>
+                                    </div>
+                                </li>
+
+                               
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="blog-detail-contain">
+                        {{article.content | safe}}
+                    </div>
+
+                   
+
+                
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Blog Details Section End -->
+    {% endblock content %}

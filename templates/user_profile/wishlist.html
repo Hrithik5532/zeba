@@ -1,0 +1,105 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>Wishlist</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Wishlist</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Wishlist Section Start -->
+    <section class="wishlist-section section-b-space">
+        <div class="container-fluid-lg">
+            <div class="row g-sm-3 g-2">
+                {% if product_list %}
+                
+                {% for pro in product_list %}
+                <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
+                    <div class="product-box-3 h-100">
+                        <div class="product-header">
+                            <div class="product-image">
+                                <a href="{% url 'product_inside' pro.pro.id %}">
+                                    <img src="../../../media/{{pro.pro.img}}" class="img-fluid blur-up lazyload"
+                                        alt="">
+                                </a>
+
+                                <div class="product-header-top">
+                                    <a href="{% url 'remove_wishlist' pro.pro.id %}" class="btn wishlist-button ">
+                                        <i data-feather="x"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-footer">
+                            <div class="product-detail">
+                                <span class="span-name">{{pro.pro.category.name}}</span>
+                                <a href="{% url 'remove_wishlist' pro.pro.id %}">
+                                    <h5 class="name">{{pro.pro.name}}</h5>
+                                </a>
+                                {% for i in pro.pro.size_quantity_price.all %}
+                                {% if forloop.counter == 1 %}
+                                    <h5 class="price"><span class="theme-color">Price:  
+                                    
+                                    
+                                    £{{i.price}}</span>
+                                        {% comment %}  <del>£15.15</del> {% endcomment %}
+                                    </h5>
+                                        {% if pro.pro.id in cart_items %}
+                                        
+                                            <div class="add-to-cart-box bg-white" >
+                                                <a href="{% url 'del_item' pro.pro.id %}" class="btn btn-add-cart bg-black text-white addcart-button" >Remove
+                                                    <span class="add-icon light-gray">
+                                                        <i class="fa-solid fa-trash"></i>
+
+                                                    </span>
+                                                </a>
+                                            
+                                            </div>
+                                            
+                                    
+
+                                        {% else %}
+                                            <div class="add-to-cart-box bg-white">
+                                                <a href="{% url 'add_cart' pro.pro.id i.id %}" class="btn btn-add-cart addcart-button">Add
+                                                    <span class="add-icon bg-light-gray">
+                                                        <i class="fa-solid fa-plus"></i>
+                                                    </span>
+                                                </a>
+                                            
+                                            </div>
+
+                                        {% endif %}
+                                {% endif %}
+                        {% endfor %}
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                {% endif %}
+
+            </div>
+        </div>
+    </section>
+    <!-- Wishlist Section End -->
+    {% endblock content %}

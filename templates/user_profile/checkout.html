@@ -1,0 +1,210 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>Checkout</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Checkout</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Checkout section Start -->
+    <form action="{% url 'paymentgateway' %}" method="GET">
+    <section class="checkout-section-2 section-b-space">
+        <div class="container-fluid-lg">
+            <div class="row g-sm-4 g-3">
+                <div class="col-lg-8">
+                    <div class="left-sidebar-checkout">
+                        <div class="checkout-detail-box">
+                            <ul>
+                                <li>
+                                    <div class="checkout-icon">
+                                        <lord-icon target=".nav-item" src="https://cdn.lordicon.com/ggihhudh.json"
+                                            trigger="loop-on-hover"
+                                            colors="primary:#121331,secondary:#646e78,tertiary:#0baf9a"
+                                            class="lord-icon">
+                                        </lord-icon>
+                                    </div>
+                                    <div class="checkout-box">
+                                        <div class="checkout-title">
+                                            <h4>Delivery Address</h4>
+                                        </div>
+
+                                        <div class="checkout-detail">
+                                            <div class="row g-4">
+
+                                                {% for add in addresses %}
+                                                <div class="col-xxl-6 col-lg-12 col-md-6">
+                                                    <div class="delivery-address-box">
+                                                        <div>
+                                                            <div class="form-check">
+                                                                <input class="form-check-input" name="address" type="radio" id="flexRadioDefault1" value="{{add.id}}" required>
+                                                            </div>
+                                                            {% if add.is_default == True %}
+                                                            
+                                                            <div class="label">
+                                                                <label>Default</label>
+                                                            </div>
+                                                            {% endif %}
+
+                                                            <ul class="delivery-address-detail">
+                                                                <li>
+                                                                    <h4 class="fw-500">{{request.user.first_name}} {{request.user.last_name}}</h4>
+                                                                </li>
+
+                                                                <li>
+                                                                    <p class="text-content"><span
+                                                                            class="text-title">Address
+                                                                            : </span>{{add.address_line_1}},{{add.address_line_2}}</p>
+                                                                </li>
+
+                                                                <li>
+                                                                    <h6 class="text-content"><span
+                                                                            class="text-title">Pin Code
+                                                                            :</span> {{add.postal_code}}</h6>
+                                                                </li>
+
+                                                                <li>
+                                                                    <h6 class="text-content mb-0"><span
+                                                                            class="text-title">Phone
+                                                                            :</span> {{request.user.phone}}</h6>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+                                              
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                             
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="right-side-summery-box">
+                        <div class="summery-box-2">
+                            <div class="summery-header">
+                                <h3>Order Summery</h3>
+                            </div>
+
+                            <ul class="summery-contain">
+                                {% for pro in cart_list %}
+                                <li>
+                                    <img src="../../..{{pro.img}}"
+                                    class="img-fluid blur-up lazyloaded checkout-image" alt="">
+                                    <h4>{{pro.name}}<span>X {{pro.cart.quantity}}</span></h4>
+                                    <h4 class="price d-flex" >£ <span class="cart_price">{{pro.cart.total_price |floatformat:2}}</span></h4>
+                                </li>
+                         
+
+
+
+
+                                {% endfor %}
+                                
+                                
+                            </ul>
+
+                            <ul class="summery-total">
+                                <li>
+                                    <h4>Subtotal</h4>
+                                    <h4 class="price" id="subtotal">£{{sub_total |floatformat:2}}</h4>
+                                </li>
+
+                                
+                               
+                                <li class="align-items-start">
+                                    <h4>Shipping</h4>
+                                    <select name="Dcountry" id="Dcountry" onchange="handleCountrySelection()" required>
+
+                                        {% if deliveryCharges %}
+                                       
+
+                                        <option value="None" >--select--</option>
+                                        {% for i in delivery_charges %}
+
+                                            {% if deliveryCharges.country_name == i.country_name %}
+                                                <option value="{{i.id}}"  selected>{{i.country_name}}</option>
+                                            {% else %}
+                                                <option value="{{i.id}}">{{i.country_name}}</option>
+                                            {% endif %}
+                                        {% endfor %}
+
+                                         
+                                        {% else %}
+                                        <option value="None" selected>--select--</option>
+                                        {% for i in delivery_charges %}
+
+                                        {% if deliveryCharges.country_name == i.country_name %}
+                                            <option value="{{i.id}}"  selected>{{i.country_name}}</option>
+                                        {% else %}
+                                            <option value="{{i.id}}">{{i.country_name}}</option>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        {% endif %}
+                                    </select>
+
+
+                                    <h4 class="price text-end" >£ {{charge}}<span id="shipping">
+
+
+                                    </span>    </h4>
+                                </li>
+                            
+
+                                <li class="list-total">
+                                    <h4>Total (USD)</h4>
+                                    <h4 class="price" id="total">£ {{total_amount}}</h4>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <input type="hidden" name="charge" value="{{charge}}">
+                        <input type="hidden" name="total_amount" value="{{total_amount}}">
+                        <input type="hidden" name="deliverycountry" value="{{deliveryCharges.country_name}}">
+                        
+                        <button class="btn theme-bg-color text-white btn-md w-100 mt-4 fw-bold" type="submit">Place Order</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    </form>
+   
+    
+<script>
+    function handleCountrySelection() {
+        var selectElement = document.getElementById("Dcountry");
+        var selectedCountryId = selectElement.value;
+        var destinationURL = `/product/checkout?Dcountry=${selectedCountryId}` ;
+
+        // Redirect to the destination URL
+        window.location.href = destinationURL;
+    }
+</script>
+    <!-- Checkout section End -->
+    {% endblock content %}

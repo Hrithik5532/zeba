@@ -1,0 +1,1011 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<style>
+    .card {
+        border: none !important;
+        position: relative;
+    }
+
+    .discount-tag {
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        font-size: 15px;
+        text-align: center;
+        color: #fff;
+        vertical-align: 50%;
+        padding: 4%;
+        background-color: blue;
+        z-index:1
+    }
+</style>
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>{{pro.name}}</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+
+                                <li class="breadcrumb-item active">{{pro.brand.name}}</li>
+                                <li class="breadcrumb-item active">{{pro.category.name}}</li>
+                                <li class="breadcrumb-item active">{{pro.subcategory.name}}</li>
+                                <li class="breadcrumb-item active">{{pro.detail_category.name}}</li>
+                                <li class="breadcrumb-item active">{{pro.name}}</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+
+    <!--sale time -->
+    {% comment %} <div class="time deal-timer product-deal-timer mx-md-0 mx-auto" id="clockdiv-1"
+    data-hours="1" data-minutes="2" data-seconds="3">
+        <div class="product-title">
+            <h4>Hurry up! Sales Ends In</h4>
+        </div>
+        <ul>
+            <li>
+                <div class="counter d-block">
+                    <div class="days d-block">
+                        <h5></h5>
+                    </div>
+                    <h6>Days</h6>
+                </div>
+            </li>
+            <li>
+                <div class="counter d-block">
+                    <div class="hours d-block">
+                        <h5></h5>
+                    </div>
+                    <h6>Hours</h6>
+                </div>
+            </li>
+            <li>
+                <div class="counter d-block">
+                    <div class="minutes d-block">
+                        <h5></h5>
+                    </div>
+                    <h6>Min</h6>
+                </div>
+            </li>
+            <li>
+                <div class="counter d-block">
+                    <div class="seconds d-block">
+                        <h5></h5>
+                    </div>
+                    <h6>Sec</h6>
+                </div>
+            </li>
+        </ul>
+    </div> {% endcomment %}
+    <!-- end-->
+
+
+    <!-- Product Left Sidebar Start -->
+    <section class="product-section">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-xxl-9 col-xl-8 col-lg-7 wow fadeInUp">
+                    <div class="row g-4">
+                        <div class="col-xl-6 wow fadeInUp">
+                            <div class="product-left-box">
+                                <div class="row g-2">
+                                    <div class="col-xxl-10 col-lg-12 col-md-10 order-xxl-2 order-lg-1 order-md-2">
+                                        <div class="product-main-2 no-arrow">
+                                        {% comment %} 
+
+                                            {% if sqp_active and sqp_active.img %}
+                                            
+                                            <div>
+                                                <div class="slider-image">
+                                                    <img src="../../../media/{{sqp_active.img}}" id="img-1"
+                                                    data-zoom-image="../../../media/{{sqp_active.img}}"
+                                                    class="img-fluid image_zoom_cls-0 blur-up lazyload" alt="{{sqp_active.img}}">
+                                                </div>
+                                            </div>                                          
+                                            {% endif %}
+
+                                            {% for i in pro.size_quantity_price %}
+                                                {% if i.name == sqp_active.name %}
+                                                
+                                                {% else %}
+                                                    <div>
+                                                        <div class="slider-image">
+                                                            <img src="../../..{{i.img}}" id="img-1"
+                                                                data-zoom-image="../../../media/{{i.img}}"
+                                                                class="img-fluid image_zoom_cls-0 blur-up lazyload" alt="{{i.img}}">
+                                                        </div>
+                                                    </div>
+                                                {% endif %}
+
+                                            {% endfor %} {% endcomment %}
+
+
+                                            {% for i in product_images %}
+                                                {% comment %} {% if forloop.counter == 1 %}
+                                                
+                                            
+                                                <div>
+                                                    <div class="slider-image">
+                                                        <img src="../../../media/{{i.img}}" id="img-1"
+                                                            data-zoom-image="../../../media/{{i.img}}"
+                                                            class="img-fluid image_zoom_cls-0 blur-up lazyload" alt="">
+                                                    </div>
+                                                </div>
+                                                {% else %} {% endcomment %}
+
+                                                <div>
+                                                    <div class="slider-image">
+                                                        <img src="../../../media/{{i.img}}" id="img-{{forloop.counter}}"
+                                                            data-zoom-image="../../../media/{{i.img}}"
+                                                            class="img-fluid image_zoom_cls-1 blur-up lazyload" alt="">
+                                                    </div>
+                                                </div>
+                                                {% comment %} {% endif %} {% endcomment %}
+                                            {% endfor %}
+
+
+                                          
+
+                                            
+
+                                        </div>
+                                    </div>
+
+                                    <div class="col-xxl-2 col-lg-12 col-md-2 order-xxl-1 order-lg-2 order-md-1">
+                                        <div class="left-slider-image-2 left-slider no-arrow slick-top">
+
+
+                                            {% comment %} {% if sqp_active and sqp_active.img  %}
+                                            <div>
+                                                <div class="sidebar-image">
+                                                    <img src="../../../media/{{sqp_active.img}}"
+                                                        class="img-fluid blur-up lazyload" alt="">
+                                                </div>
+                                            </div>
+
+                                            {% endif %}
+
+
+                                            {% for i in pro.size_quantity_price %}
+                                                {% if i.name == sqp_active.name %}
+                                                
+                                                {% else %}
+                                            
+                                                <div>
+                                                    <div class="sidebar-image">
+                                                        <img src="../../..{{i.img}}"
+                                                            class="img-fluid blur-up lazyload" alt="">
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                            {% endfor %} {% endcomment %}
+
+                                            {% for i in product_images %}
+                                                    <div>
+                                                        <div class="sidebar-image">
+                                                            <img src="../../../media/{{i.img}}" 
+                                                                class="img-fluid blur-up lazyload" alt="">
+                                                        </div>
+                                                    </div>
+
+                                            {% endfor %} 
+
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.1s">
+                            <div class="right-box-contain">
+                                {% if sqp_active.discount == True %}
+                                <h6 class="offer-top">{{sqp_active.discount_percentage}}% Off</h6>
+                                
+                                <h2 class="name">{{pro.name}}</h2>
+                                <div class="price-rating">
+                                    <h3 class="theme-color price">£{{sqp_active.discounted_price}}<del class="text-content">£{{sqp_active.price}}</del> <span
+                                            class="offer theme-color">({{sqp_active.discount_percentage}}% off)</span></h3>
+                                   
+                                    
+                                </div>
+                                {% else %}
+                                <h2 class="name">{{pro.name}}</h2>
+                                <div class="price-rating">
+                                    <h3 class="theme-color price">£{{sqp_active.price}}</h3>
+                             
+
+                                </div>
+                                {% endif %}
+
+                                
+
+                             
+                                <div class="product-packege">
+                                    <div class="product-title">
+                                        <h4>Color / Size Varients:</h4>
+                                    </div>
+                                    <ul class="select-packege">
+                                        {% for color in pro.color  %}                                                  
+                                            
+                                          
+                                        
+                                        {% endfor %}
+                                    </ul>
+                                    <ul class="select-packege">
+                                        {% for sqp in pro.size_quantity_price  %}
+
+                                            {% if sqp.color and sqp.size %}
+                                                    {% if sqp.id == sqp_active_id %}
+                                                    
+                                                        {% if sqp.color_type == 'multi_color' %}
+                                                            
+                                                        <li>
+                                                            <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}" class="active">{{sqp.size}}</a>
+                                                        </li>
+                                                        {% else %}
+                                                        <li>
+                                                            <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}" class="active">{{sqp.color}}/{{sqp.size}}</a>
+                                                        </li>
+                                                        {% endif %}
+                                                    {% else %}
+                                                    {% if sqp.color_type == "multi_color" %}
+                                                        
+                                                        <li>
+                                                            <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}" >{{sqp.size}}</a>
+                                                        </li>
+                                                        {% else %}
+                                                        <li>
+                                                            <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}" >{{sqp.color}}/{{sqp.size}}</a>
+                                                        </li>
+                                                        {% endif %}
+                                                    {% endif %}
+
+
+
+
+                                            {% elif sqp.color %}
+
+
+
+                                                    {% if sqp.id == sqp_active_id %}
+                                                    
+                                                    <li>
+                                                        <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}" class="active">{{sqp.color}}</a>
+                                                    </li>
+                                                    {% else %}
+                                                    <li>
+                                                        <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}">{{sqp.color}}</a>
+                                                    </li>
+                                                    {% endif %}
+
+
+
+                                            {% comment %} {% else %}
+
+
+
+                                                    {% if sqp.id == sqp_active_id %}
+                                                    
+                                                    <li>
+                                                        <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}" class="active">{{sqp.size}}</a>
+                                                    </li>
+                                                    {% else %}
+                                                    <li>
+                                                        <a href="{% url 'product_inside' pro.id %}?sqp_id={{sqp.id}}">{{sqp.size}}</a>
+                                                    </li>
+                                                    {% endif %} {% endcomment %}
+
+
+                                            {% endif %}
+                                        
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                                {% if pro.cart != True %}
+                                
+                                
+                                <form action="{% url 'add_cart' pro.id sqp_active.id %}" method="POST">
+                                        {% csrf_token %}
+                                    {% if sqp_active.color_type == "multi_color" and dropdown_color != None and dropdown_color|length > 1 %}
+                                                                 
+                                        <div class="buy-box d-flex row">
+                                                                        
+                                            <span >
+                                                Colour Available <span class="text-danger">*</span>:
+                                            </span>
+                                            <div class="d-flex">
+
+                                                {% for color in  dropdown_color %}
+                                                <input type="radio" name="selected_color" id="{{color}}" value="{{color}}" required />
+                                                {% comment %} <label for="{{color}}"><span class="p-3 m-2" style="border:1px solid;background:{{color}};    border-radius: 24px;"></span></label> {% endcomment %}
+                                                <label for="{{color}}"><span class="p-3 m-2" style="border:1px solid;">{{color}}</span></label>
+                                                {% endfor %}
+                                            </div>
+                                                                        
+                                                                       
+                                                                    
+                                        </div>
+                                       
+                                    {% endif %}
+                                    <div class="note-box product-packege">
+                                        <div class="cart_qty qty-box product-qty">
+                                            <div class="input-group">
+                                                <button type="button" class="qty-right-plus" data-type="plus" data-field="">
+                                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                                                </button>
+                                                <input class="form-control input-number qty-input" type="text"
+                                                    name="qty"  value="1">
+                                                <button type="button" class="qty-left-minus" data-type="minus"
+                                                    data-field="">
+                                                    <i class="fa fa-minus" aria-hidden="true"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <button type='submit'
+                                            class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart</button>
+                                    </div>
+                                </form>
+
+                            {% else %}
+                            {% if sqp_active.color_type == "multi_color" and dropdown_color != None and dropdown_color|length > 1 %}
+                                                                 
+                                        <div class="buy-box d-flex row">
+                                                                        
+                                            <span >
+                                                Colour Available <span class="text-danger">*</span>:
+                                            </span>
+                                            <div class="d-flex">
+
+                                                {% for color in  dropdown_color %}
+                                                <input type="radio" name="selected_color" id="{{color}}" value="{{color}}" required />
+                                                {% comment %} <label for="{{color}}"><span class="p-3 m-2" style="border:1px solid;background:{{color}};    border-radius: 24px;"></span></label> {% endcomment %}
+                                                <label for="{{color}}"><span class="p-1 m-2">{{color}}</span></label>
+                                                {% endfor %}
+                                            </div>
+                                                                        
+                                                                       
+                                                                    
+                                        </div>
+                                       
+                                    {% endif %}
+                                <div class="note-box product-packege">
+
+                                    <button class="btn btn-md bg-dark cart-button text-white w-50" disabled>Already In Cart</button>
+                                    <a href="{% url 'show_cart'%}"
+                                        class="btn btn-md bg-dark cart-button text-white w-20">View Cart</a>
+                                </div>
+                            {% endif %}
+
+
+
+
+
+
+                                <div class="buy-box">
+                                    {% if pro.wishlist == True %}
+                                    
+                                    <a href="{% url 'wishlist' %}" style="color:#760718">
+                                        See Wishlist
+                                    </a>
+                                    <i class="fa fa-solid fa-heart" style="color:black"></i>
+                                    <span>Already In Wishlist</span>
+                                    {% else %}
+
+                                    <a href="{% url 'add_wishlist' pro.id  %}">
+                                        <i data-feather="heart"></i>
+                                        <span>Add To Wishlist</span>
+                                    </a>
+                                    {% endif %}
+
+                                
+                                </div>
+                                
+                               
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="product-section-box">
+                                <ul class="nav nav-tabs custom-nav" id="myTab" role="tablist">
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link active" id="description-tab" data-bs-toggle="tab"
+                                            data-bs-target="#description" type="button" role="tab"
+                                            aria-controls="description" aria-selected="true">Description</button>
+                                    </li>
+
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="info-tab" data-bs-toggle="tab"
+                                            data-bs-target="#info" type="button" role="tab" aria-controls="info"
+                                            aria-selected="false">Additional info</button>
+                                    </li>
+
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="care-tab" data-bs-toggle="tab"
+                                            data-bs-target="#care" type="button" role="tab" aria-controls="care"
+                                            aria-selected="false">Care Instuctions</button>
+                                    </li>
+
+                                    <li class="nav-item" role="presentation">
+                                        <button class="nav-link" id="review-tab" data-bs-toggle="tab"
+                                            data-bs-target="#review" type="button" role="tab" aria-controls="review"
+                                            aria-selected="false">Review</button>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content custom-tab" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="description" role="tabpanel"
+                                        aria-labelledby="description-tab">
+                                        <div class="product-description">
+                                            {{pro.description | safe}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="info" role="tabpanel" aria-labelledby="info-tab">
+                                        <div class="table-responsive">
+                                            {{pro.additional_info | safe}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="care" role="tabpanel" aria-labelledby="care-tab">
+                                        <div class="information-box">
+                                           {{pro.care_instructions | safe}}
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                                        <div class="review-box">
+                                            <div class="row g-8">
+                                                
+                                                {% if request.user.is_authenticated %}
+                                                {% if order %}
+                                                
+                                                <form action="{% url 'review_post' pro.id %}" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="col-xl-12">
+                                                        <div class="review-title">
+                                                            <h4 class="fw-500">Add a review</h4>
+                                                        </div>
+
+                                                        <div class="row g-4">
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating theme-form-floating">
+                                                                    <input type="text" class="form-control" id="name" name="name"
+                                                                    disabled value="{{request.user.first_name}} {{request.user.last_name}}">
+                                                                    <label for="name">Your Name</label>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="col-md-6">
+                                                                <div class="form-floating theme-form-floating">
+                                                                    <input type="email" class="form-control" id="email" name="email"
+                                                                        disabled value="{{request.user.email}}" >
+                                                                    <label for="email">Email Address</label>
+                                                                </div>
+                                                            </div>
+
+
+                                                            <div class="col-15">
+                                                                <div class="form-floating theme-form-floating">
+                                                                    <textarea class="form-control"
+                                                                        placeholder="Leave a comment here"
+                                                                        id="floatingTextarea2"
+                                                                        style="height: 150px" name="comment"></textarea>
+                                                                    <label for="floatingTextarea2">Write Your
+                                                                        Comment</label>
+                                                                </div>
+                                                            </div>
+                                                            <button class="btn btn-md bg-dark cart-button text-white w-50" type="submit">Submit</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                {% endif %}
+
+                                                {% endif %}
+                                                
+
+                                                <div class="col-12">
+                                                    <div class="review-title">
+                                                        <h4 class="fw-500">Customer questions & answers</h4>
+                                                    </div>
+
+                                                    <div class="review-people">
+                                                        <ul class="review-list">
+                                                            {% for review in reviews %}
+                                                            <li>
+                                                                <div class="people-box">
+                                                                   
+
+                                                                    <div class="people-comment">
+                                                                        <a class="name"
+                                                                            >{{review.user.first_name}} {{review.user.last_name}}</a>
+                                                                        <div class="date-time">
+                                                                            <h6 class="text-content">{{review.updated_at}}</h6>
+                                                                            {% comment %} 
+                                                                            <div class="product-rating">
+                                                                                <ul class="rating">
+                                                                                    <li>
+                                                                                        <i data-feather="star"
+                                                                                            class="fill"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i data-feather="star"
+                                                                                            class="fill"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i data-feather="star"
+                                                                                            class="fill"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i data-feather="star"></i>
+                                                                                    </li>
+                                                                                    <li>
+                                                                                        <i data-feather="star"></i>
+                                                                                    </li>
+                                                                                </ul>
+                                                                            </div> {% endcomment %}
+                                                                        </div>
+
+                                                                        <div class="reply d-flex">
+
+                                                                            <p>{{review.comment}}
+                                                                            </p>
+
+                                                                            {% if request.user == review.user %}
+                                                                            
+                                                                            <button class="btn btn-md btn-dark " onclick="location.href='{% url 'review_post' pro.id %}?review={{review.id}}'">Delete</button>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-xxl-3 col-xl-4 col-lg-5 d-none d-lg-block wow fadeInUp">
+                    <div class="right-sidebar-box">
+                        <div class="vendor-box">
+                            <div class="verndor-contain">
+                               {% if pro.brand.img %}
+                                <div class="vendor-image">
+                                    <img src="../../..{{pro.brand.img}}" class="blur-up lazyload" alt="">
+                                </div>
+                                {% endif %}
+
+                                <div class="vendor-name">
+
+                                    <h5>Brnad Name: <span class="text-content">{{pro.brand.name}}</span></h5>
+
+
+                                </div>
+                            </div>
+                            {% if pro.brand.details %}
+
+                            {% if pro.brand.details %}
+
+                            <p class="vendor-detail">{{pro.brand.details}}</p>
+                            {% endif %}
+
+                            <div class="vendor-list">
+                                <ul>
+                                    {% if pro.brand.address %}
+
+                                    <li>
+                                        <div class="address-contact">
+                                            <i data-feather="map-pin"></i>
+                                            <h5>Address: <span class="text-content">{{pro.brand.address}}</span></h5>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+
+
+                                    {% if pro.brand.contact %}
+                                    
+                                    <li>
+                                        
+                                        <div class="address-contact">
+                                            <i data-feather="headphones"></i>
+                                            <h5>Contact Seller: <span class="text-content">{{pro.brand.contact}}</span></h5>
+                                        </div>
+                                    </li>
+                                    {% endif %}
+                                   
+                                </ul>
+                            </div>
+                            {% endif %}
+
+                        </div>
+
+                        {% comment %} <!-- Trending Product -->
+                        <div class="pt-25">
+                            <div class="category-menu">
+                                <h3>Trending Products</h3>
+
+                                <ul class="product-list product-right-sidebar border-0 p-0">
+                                    <li>
+                                        <div class="offer-product">
+                                            <a href="product-left-thumbnail.html" class="offer-image">
+                                                <img src="../../../static/assets/images/vegetable/product/23.png"
+                                                    class="img-fluid blur-up lazyload" alt="">
+                                            </a>
+
+                                            <div class="offer-detail">
+                                                <div>
+                                                    <a href="product-left-thumbnail.html">
+                                                        <h6 class="name">Meatigo Premium Goat Curry</h6>
+                                                    </a>
+                                                    <span>450 G</span>
+                                                    <h6 class="price theme-color">£ 70.00</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="offer-product">
+                                            <a href="product-left-thumbnail.html" class="offer-image">
+                                                <img src="../../../static/assets/images/vegetable/product/24.png"
+                                                    class="blur-up lazyload" alt="">
+                                            </a>
+
+                                            <div class="offer-detail">
+                                                <div>
+                                                    <a href="product-left-thumbnail.html">
+                                                        <h6 class="name">Dates Medjoul Premium Imported</h6>
+                                                    </a>
+                                                    <span>450 G</span>
+                                                    <h6 class="price theme-color">£ 40.00</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li>
+                                        <div class="offer-product">
+                                            <a href="product-left-thumbnail.html" class="offer-image">
+                                                <img src="../../../static/assets/images/vegetable/product/25.png"
+                                                    class="blur-up lazyload" alt="">
+                                            </a>
+
+                                            <div class="offer-detail">
+                                                <div>
+                                                    <a href="product-left-thumbnail.html">
+                                                        <h6 class="name">Good Life Walnut Kernels</h6>
+                                                    </a>
+                                                    <span>200 G</span>
+                                                    <h6 class="price theme-color">£ 52.00</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+
+                                    <li class="mb-0">
+                                        <div class="offer-product">
+                                            <a href="product-left-thumbnail.html" class="offer-image">
+                                                <img src="../../../static/assets/images/vegetable/product/26.png"
+                                                    class="blur-up lazyload" alt="">
+                                            </a>
+
+                                            <div class="offer-detail">
+                                                <div>
+                                                    <a href="product-left-thumbnail.html">
+                                                        <h6 class="name">Apple Red Premium Imported</h6>
+                                                    </a>
+                                                    <span>1 KG</span>
+                                                    <h6 class="price theme-color">£ 80.00</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> {% endcomment %}
+
+                        <!-- Banner Section -->
+                        {% comment %} <div class="ratio_156 pt-25">
+                            <div class="home-contain">
+                                <img src="../../../static/assets/images/vegetable/banner/8.jpg" class="bg-img blur-up lazyload"
+                                    alt="">
+                                <div class="home-detail p-top-left home-p-medium">
+                                    <div>
+                                        <h6 class="text-yellow home-banner">Seafood</h6>
+                                        <h3 class="text-uppercase fw-normal"><span
+                                                class="theme-color fw-bold">Freshes</span> Products</h3>
+                                        <h3 class="fw-light">every hour</h3>
+                                        <button onclick="location.href = 'shop-left-sidebar.html';"
+                                            class="btn btn-animation btn-md fw-bold mend-auto">Shop Now <i
+                                                class="fa-solid fa-arrow-right icon"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Product Left Sidebar End -->
+
+    <!-- Releted Product Section Start -->
+    <section class="product-list-section section-b-space">
+        <div class="container-fluid-lg">
+            <div class="title">
+                <h2>Related Products</h2>
+                <span class="title-leaf">
+                    <svg class="icon-width">
+                        <use xlink:href="../../../static/assets/svg/leaf.svg#leaf"></use>
+                    </svg>
+                </span>
+            </div>
+
+            <div class="row">
+
+                <div class="col-12">
+                    <div class="slider-6_1 product-wrapper">
+
+                        {% for related_product in related_products_category %}
+                            {% if related_product.name != pro.name %}
+                            <div>
+                                <div class="card">
+
+                                    {% for i in related_product.size_quantity_price.all %}
+                                    {% if i.discount == True %}
+        
+                                        <div class="discount-tag">{{ i.discount_percentage }}% OFF</div>                                
+                                        {% endif %} 
+                                    {% endfor %}  
+                                </div>
+
+
+                                <div class="product-box-3 wow fadeInUp">
+                                    <div class="product-header">
+                                        <div class="product-image">
+
+                                            <a href="{% url 'product_inside'  related_product.id %}">
+                                                <img src="../../../media/{{related_product.img}}"
+                                                    class="img-fluid blur-up lazyload" alt="{{related_product.img}}">
+                                            </a>
+
+                                            <ul class="product-option">
+                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                                    <a href="{% url 'product_inside' related_product.id %}">
+                                                        <i data-feather="eye"></i>
+                                                    </a>
+                                                </li>
+
+                                            
+                                                {% if related_product.wishlist == True %}
+
+                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                                    <a href="{% url  'remove_wishlist' related_product.id %}"  class="notifi-wishlist">
+                                                        <i class="fa fa-solid fa-heart" style="color:black"></i>
+                                                    </a>
+                                                </li>
+
+                                                {% else %}
+                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                                    <a href="{% url  'add_wishlist' related_product.id %}"  class="notifi-wishlist">
+                                                        <i data-feather="heart"></i>
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-footer">
+                                        <div class="product-detail">
+                                            <span class="span-name">{{related_product.category.name}}</span>
+                                            <a href="{% url 'product_inside'  related_product.id %}">
+                                                <h5 class="name">{{related_product.name}}</h5>
+                                            </a>
+                                        
+                                            {% for i in related_product.size_quantity_price.all %}
+                                                    {% if forloop.counter == 1 %}
+                                                        <h5 class="price"><span class="theme-color">Price:  
+                                                        
+                                                        
+                                                            £{{i.price}}</span>
+                                                        
+                                                            {% comment %} <del>${{15.15}}</del> {% endcomment %}
+
+                                                        </h5>
+                                                            {% if related_product.cart %}
+                                                            
+                                                                <div class="add-to-cart-box bg-white" >
+                                                                    <a href="{% url 'del_item' related_product.id %}" class="btn btn-add-cart bg-black text-white addcart-button" >Remove
+                                                                        <span class="add-icon light-gray">
+                                                                            <i class="fa-solid fa-trash"></i>
+
+                                                                        </span>
+                                                                    </a>
+                                                                
+                                                                </div>
+                                                                
+                                                        
+
+                                                            {% else %}
+                                                                <div class="add-to-cart-box bg-white">
+                                                                    <a href="{% url 'add_cart' related_product.id i.id %}?qty=1" class="btn btn-add-cart addcart-button">Add
+                                                                        <span class="add-icon bg-light-gray">
+                                                                            <i class="fa-solid fa-plus"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                
+                                                                </div>
+
+                                                            {% endif %}
+                                                    {% endif %}
+                                            {% endfor %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+
+                        
+                       
+                    </div>
+                </div>
+                <div class="col-12 mt-3">
+                    <div class="slider-6_1 product-wrapper">
+
+                        {% for related_product in related_products_brand %}
+                            {% if related_product.name != pro.name %}
+                            <div>
+                                <div class="card">
+
+                                    {% for i in related_product.size_quantity_price.all %}
+                                    {% if i.discount == True %}
+        
+                                        <div class="discount-tag">{{ i.discount_percentage }}% OFF</div>                                
+                                        {% endif %} 
+                                    {% endfor %}  
+                                </div>
+
+
+                                <div class="product-box-3 wow fadeInUp">
+                                    <div class="product-header">
+                                        <div class="product-image">
+
+                                            <a href="{% url 'product_inside'  related_product.id %}">
+                                                <img src="../../../media/{{related_product.img}}"
+                                                    class="img-fluid blur-up lazyload" alt="{{related_product.img}}">
+                                            </a>
+
+                                            <ul class="product-option">
+                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                                    <a href="{% url 'product_inside' related_product.id %}">
+                                                        <i data-feather="eye"></i>
+                                                    </a>
+                                                </li>
+
+                                            
+                                                {% if related_product.wishlist == True %}
+
+                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                                    <a href="{% url  'remove_wishlist' related_product.id %}"  class="notifi-wishlist">
+                                                        <i class="fa fa-solid fa-heart" style="color:black"></i>
+                                                    </a>
+                                                </li>
+
+                                                {% else %}
+                                                <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                                    <a href="{% url  'add_wishlist' related_product.id %}"  class="notifi-wishlist">
+                                                        <i data-feather="heart"></i>
+                                                    </a>
+                                                </li>
+                                                {% endif %}
+                                            </ul>
+                                        </div>
+                                    </div>
+
+                                    <div class="product-footer">
+                                        <div class="product-detail">
+                                            <span class="span-name">{{related_product.category.name}}</span>
+                                            <a href="{% url 'product_inside'  related_product.id %}">
+                                                <h5 class="name">{{related_product.name}}</h5>
+                                            </a>
+                                        
+                                            {% for i in related_product.size_quantity_price.all %}
+                                                    {% if forloop.counter == 1 %}
+                                                        <h5 class="price"><span class="theme-color">Price:  
+                                                        
+                                                        
+                                                            £{{i.price}}</span>
+                                                        
+                                                            {% comment %} <del>${{15.15}}</del> {% endcomment %}
+
+                                                        </h5>
+                                                            {% if related_product.cart %}
+                                                            
+                                                                <div class="add-to-cart-box bg-white" >
+                                                                    <a href="{% url 'del_item' related_product.id %}" class="btn btn-add-cart bg-black text-white addcart-button" >Remove
+                                                                        <span class="add-icon light-gray">
+                                                                            <i class="fa-solid fa-trash"></i>
+
+                                                                        </span>
+                                                                    </a>
+                                                                
+                                                                </div>
+                                                                
+                                                        
+
+                                                            {% else %}
+                                                                <div class="add-to-cart-box bg-white">
+                                                                    <a href="{% url 'add_cart' related_product.id i.id %}?qty=1" class="btn btn-add-cart addcart-button">Add
+                                                                        <span class="add-icon bg-light-gray">
+                                                                            <i class="fa-solid fa-plus"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                
+                                                                </div>
+
+                                                            {% endif %}
+                                                    {% endif %}
+                                            {% endfor %}
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endif %}
+                        {% endfor %}
+
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> 
+
+    <!-- Releted Product Section End -->
+
+    <!--added scripts-->
+    <script>
+        const plusButton = document.querySelector(".qty-right-plus");
+        const minusButton = document.querySelector(".qty-left-minus");
+        const qtyInput = document.querySelector(".qty-input");
+    
+        plusButton.addEventListener("click", () => {
+            qtyInput.value = parseInt(qtyInput.value) + 1;
+        });
+    
+        minusButton.addEventListener("click", () => {
+            if (qtyInput.value > 0) {
+                qtyInput.value = parseInt(qtyInput.value) - 1;
+            }
+        });
+    </script>
+    <script>
+        
+    </script>
+    {% endblock content %}

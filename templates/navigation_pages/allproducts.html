@@ -1,0 +1,727 @@
+{% extends 'template.html' %}
+{% block content %}
+    <!-- Breadcrumb Section Start -->
+    <section class="breadscrumb-section pt-0">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="breadscrumb-contain">
+                        <h2>Products</h2>
+                        <nav>
+                            <ol class="breadcrumb mb-0">
+                                <li class="breadcrumb-item">
+                                    <a href="{% url 'home' %}">
+                                        <i class="fa-solid fa-house"></i>
+                                    </a>
+                                </li>
+                                <li class="breadcrumb-item active" aria-current="page">Products</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Breadcrumb Section End -->
+
+    <!-- Category Section Start -->
+    {% comment %} <section class="wow fadeInUp">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-12">
+                    <div class="slider-7_1 no-space shop-box no-arrow">
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/vegetable.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Vegetables & Fruit</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/cup.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Beverages</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/meats.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Meats & Seafood</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/breakfast.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Breakfast</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/frozen.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Frozen Foods</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/milk.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Milk & Dairies</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/pet.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Pet Food</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/biscuit.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Biscuits & Snacks</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="shop-category-box">
+                                <a href="shop-left-sidebar.html">
+                                    <div class="shop-category-image">
+                                        <img src="../../../static/assets/svg/1/grocery.svg" class="blur-up lazyload" alt="">
+                                    </div>
+                                    <div class="category-box-name">
+                                        <h6>Grocery & Staples</h6>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section> {% endcomment %}
+    <!-- Category Section End -->
+
+    <!-- Shop Section Start -->
+    <section class="section-b-space shop-section">
+        <div class="container-fluid-lg">
+            <div class="row">
+                <div class="col-custome-3 wow fadeInUp">
+                    <div class="left-box">
+                        <div class="shop-left-sidebar">
+                            <div class="back-button">
+                                <h3><i class="fa-solid fa-arrow-left"></i> Back</h3>
+                            </div>
+
+                            <div class="filter-category">
+                                <div class="filter-title">
+                                    <h2>Filters</h2>
+                                    <a href="{% url 'allproducts' %}">Clear All</a>
+                                </div>
+                                {% if category %}
+                                
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'allproducts' %}">{{category}}</a>
+                                    </li>
+                                    
+                                </ul>
+                                {% endif %}
+                                {% if price %}
+                                
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'allproducts' %}">{{price}}</a>
+                                    </li>
+                                    
+                                </ul>
+                                {% endif %}
+                                {% if color %}
+                                
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'allproducts' %}">{{color}}</a>
+                                    </li>
+                                    
+                                </ul>
+                                {% endif %}
+
+
+                                {% if Brand %}
+                                
+                                <ul>
+                                    <li>
+                                        <a href="{% url 'allproducts' %}">{{Brand}}</a>
+                                    </li>
+                                    
+                                </ul>
+                                {% endif %}
+
+
+                              
+                            </div>
+
+                            <div class="accordion custome-accordion" id="accordionExample">
+                                <!--Category Filter-->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                            data-bs-target="#collapseOne" aria-expanded="true"
+                                            aria-controls="collapseOne">
+                                            <span>Categories</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseOne" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingOne">
+                                        <div class="accordion-body">
+                                            <div class="form-floating theme-form-floating-2 search-box">
+                                                <input type="search" class="form-control" id="search-cat"
+                                                    placeholder="Search ..">
+                                                <label for="search">Search</label>
+                                            </div>
+
+                                            <ul class="category-list custom-padding custom-height" id="category-list-filter">
+                                              
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Categpry Filter-->
+
+                                <!--Color Filter-->
+
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                                            aria-expanded="false" aria-controls="collapseTwo">
+                                            <span>Colour </span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseTwo" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingTwo">
+                                        <div class="accordion-body">
+                                            <ul class="category-list custom-padding">
+                                                {% for color  in colors %}
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+                                                        <input class="checkbox_animated" name="color" type="radio" value="{{color}}" id="color">
+                                                        <label class="form-check-label" for="color">
+                                                            <span class="name">{{color}}</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                                {% endfor %}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div> 
+                                <!--End Color Filter-->
+
+                                <!--Price Filter-->
+
+                                {% comment %} <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                            aria-expanded="false" aria-controls="collapseThree">
+                                            <span>Price</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseThree" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingThree">
+                                        <form action="{{ request.path }}" method="GET">
+                                            <div class="accordion-body">
+                                                <div class="range-slider d-flex">
+                                                    <input type="number" min="0" name="minPrice" class="js-range-slider" placeholder="Min. Price in $">
+                                                    
+                                                    <input type="number" min="0"name="maxPrice" class="js-range-slider" placeholder="Min. Price in $">
+
+                                                </div>
+                                                <input type="submit"class="js-range-slider" placeholder="Submit">
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div> {% endcomment %}
+                                <!--End Price Filter-->
+
+                                <!--Discount Filter-->
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                                        <button class="accordion-button collapsed" type="button"
+                                            data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                            aria-expanded="false" aria-controls="collapseFour">
+                                            <span>Discount</span>
+                                        </button>
+                                    </h2>
+                                    <div id="collapseFour" class="accordion-collapse collapse show"
+                                        aria-labelledby="panelsStayOpen-headingFour">
+                                        <div class="accordion-body">
+                                            <ul class="category-list custom-padding">
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+                                                        <input class="checkbox_animated discount" type="checkbox"
+                                                        id="flexCheckDefault1"  >
+                                                        <label class="form-check-label" for="flexCheckDefault">
+                                                            <span class="name">upto <span class="percent">5</span>%</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+                                                        <input class="checkbox_animated discount" type="checkbox"
+                                                            id="flexCheckDefault1">
+                                                        <label class="form-check-label" for="flexCheckDefault1">
+                                                            <span class="name">upto <span class="percent">10</span>%</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+                                                        <input class="checkbox_animated discount" type="checkbox"
+                                                            id="flexCheckDefault2">
+                                                        <label class="form-check-label" for="flexCheckDefault2">
+                                                            <span class="name">upto <span class="percent">15</span>%</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+                                                        <input class="checkbox_animated discount" type="checkbox"
+                                                            id="flexCheckDefault3">
+                                                        <label class="form-check-label" for="flexCheckDefault3">
+                                                            <span class="name">upto <span class="percent">25</span>%</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+
+                                                <li>
+                                                    <div class="form-check ps-0 m-0 category-list-box">
+                                                        <input class="checkbox_animated discount" type="checkbox"
+                                                            id="flexCheckDefault4">
+                                                        <label class="form-check-label" for="flexCheckDefault4">
+                                                            <span class="name">upto <span class="percent">60</span>%</span>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--End Discount Filter-->
+
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-custome-9 wow fadeInUp">
+                    <div class="show-button">
+                        <div class="filter-button-group mt-0">
+                            <div class="filter-button d-inline-block d-lg-none">
+                                <a><i class="fa-solid fa-filter"></i> Filter Menu</a>
+                            </div>
+                        </div>
+
+                        {% comment %} <div class="top-filter-menu">
+                            <div class="category-dropdown">
+                                <h5 class="text-content">Sort By :</h5>
+                                <div class="dropdown">
+                                    <button class="dropdown-toggle" type="button" id="dropdownMenuButton1"
+                                        data-bs-toggle="dropdown">
+                                        <span>Most Popular</span> <i class="fa-solid fa-angle-down"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                        <li>
+                                            <a class="dropdown-item" id="pop" href="javascript:void(0)">Popularity</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="low" href="javascript:void(0)">Low - High
+                                                Price</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="high" href="javascript:void(0)">High - Low
+                                                Price</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="rating" href="javascript:void(0)">Average
+                                                Rating</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="aToz" href="javascript:void(0)">A - Z Order</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="zToa" href="javascript:void(0)">Z - A Order</a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" id="off" href="javascript:void(0)">% Off - Hight To
+                                                Low</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="grid-option d-none d-md-block">
+                                <ul>
+                                    <li class="three-grid">
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../static/assets/svg/grid-3.svg" class="blur-up lazyload" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="grid-btn d-xxl-inline-block d-none active">
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../static/assets/svg/grid-4.svg"
+                                                class="blur-up lazyload d-lg-inline-block d-none" alt="">
+                                            <img src="../../../static/assets/svg/grid.svg"
+                                                class="blur-up lazyload img-fluid d-lg-none d-inline-block" alt="">
+                                        </a>
+                                    </li>
+                                    <li class="list-btn">
+                                        <a href="javascript:void(0)">
+                                            <img src="../../../static/assets/svg/list.svg" class="blur-up lazyload" alt="">
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div> {% endcomment %}
+                    </div>
+                    <style>
+                        .card {
+                            border: none !important;
+                            position: relative;
+                        }
+                    
+                        .discount-tag {
+                            position: absolute;
+                            top: 20px;
+                            left: 10px;
+                            font-size: 15px;
+                            text-align: center;
+                            color: #fff;
+                            vertical-align: 50%;
+                            padding: 4%;
+                            background-color: blue;
+                            z-index:1
+                        }
+                    </style>
+
+
+
+                    <div
+                        class="row g-sm-4 g-3 row-cols-xxl-4 row-cols-xl-3 row-cols-lg-2 row-cols-md-3 row-cols-2 product-list-section">
+                        {% for pro in data  %}
+                        <div class="card">
+
+
+                            {% for i in pro.size_quantity_price %}
+                            {% if i.discount == True %}
+
+                                <div class="discount-tag">{{ i.discount_percentage }}% OFF</div>                                
+                                {% endif %} 
+                            {% endfor %}
+
+
+
+                            <div class="product-box-3 h-100 wow fadeInUp">
+                                <div class="product-header">
+
+
+                                    <div class="product-image">
+                                        <a href="{% url 'product_inside'  pro.id %}">
+                                            <img src="../../..{{pro.img}}"
+                                                class="img-fluid blur-up lazyload" alt="">
+                                        </a>
+
+                                        <ul class="product-option">
+                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                                <a href="{% url 'product_inside' pro.id %}">
+                                                    <i data-feather="eye"></i>
+                                                </a>
+                                            </li>
+                                            <li data-bs-toggle="tooltip" >
+                                                    <a >|</a>
+                                            </li>
+
+                                            {% if pro.wishlist == True %}
+                                            <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                                <a href="{% url  'remove_wishlist' pro.id %}" class="notifi-wishlist">
+                                                    <i class="fa fa-solid fa-heart" style="color:black"></i>
+                                                </a>
+                                            </li>  
+                                            {% else %}
+                                           <li data-bs-toggle="tooltip" data-bs-placement="top" title="Wishlist">
+                                                <a href="{% url  'add_wishlist' pro.id %}" class="notifi-wishlist">
+                                                    <i data-feather="heart"></i>
+                                                </a>
+                                            </li> 
+                                            {% endif %}
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="product-footer">
+                                    <div class="product-detail">
+                                        <span class="span-name">{{pro.subcategory.name}}</span>
+                                        <a href="{% url 'product_inside' pro.id %}">
+                                            <h5 class="name">{{pro.name}}</h5>
+                                        </a>
+                                        <p class="text-content mt-1 mb-2 product-content">{{pro.description}}</p>
+                                      
+                                        {% for i in pro.size_quantity_price %}
+                                                {% if forloop.counter == 1 %}
+                                                    <h5 class="price"><span class="theme-color">Price:  
+                                                    
+                                                    
+                                                        £{{i.price}}</span>
+                                                    
+                                                         {% comment %} <del>${{15.15}}</del> {% endcomment %}
+
+                                                    </h5>
+                                                        {% if pro.cart %}
+                                                        
+                                                            <div class="add-to-cart-box bg-white" >
+                                                                <a href="{% url 'del_item' pro.id %}" class="btn btn-add-cart bg-black text-white addcart-button" >Remove
+                                                                    <span class="add-icon light-gray">
+                                                                        <i class="fa-solid fa-trash"></i>
+
+                                                                    </span>
+                                                                </a>
+                                                            
+                                                            </div>
+                                                            
+                                                    
+
+                                                        {% else %}
+                                                            <div class="add-to-cart-box bg-white">
+                                                                <a href="{% url 'add_cart' pro.id i.id %}?qty=1" class="btn btn-add-cart addcart-button">Add
+                                                                    <span class="add-icon bg-light-gray">
+                                                                        <i class="fa-solid fa-plus"></i>
+                                                                    </span>
+                                                                </a>
+                                                            
+                                                            </div>
+
+                                                        {% endif %}
+                                                {% endif %}
+                                        {% endfor %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                      
+                    </div>
+                    <!--Pagination-->
+
+                    <nav class="custome-pagination">
+                        {% if data.has_other_pages %}
+                         <ul class="pagination justify-content-center">
+                            {% if data.has_previous %}
+
+                            <li class="page-item disabled">
+                                <a class="page-link" href="?page={{ data.previous_page_number }}" tabindex="-1" aria-disabled="true">
+                                    <i class="fa-solid fa-angles-left"></i>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="disabled page-item"><i class=""></i></li>
+                            {% endif %} 
+                            
+                            {% for i in data.paginator.page_range %} 
+                            {% if data.number == i %}
+                            <li class="page-item active">
+                                 <a class="page-link">{{ i }}</a>
+                            </li>
+                            {% else %}
+                            <li class="next page-item"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endif %} 
+                            {% endfor %} 
+
+
+                            {% if data.has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ posts.next_page_number }}">
+                                    <i class="fa-solid fa-angles-right"></i>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="disabled page-item"><i class="bi bi-caret-right-fill"></i></li>
+                        </ul> 
+                        {% endif %}
+                        {% endif %}
+                    </nav>
+                    
+                    <!--End Pagination-->
+                </div>
+            </div>
+        </div>
+    </section>
+
+        {% comment %} <script>
+            const catList = document.getElementById('category-list-filter');
+          
+            fetch('http://127.0.0.1:8000/product/cat_list/')
+              .then(response => response.json())
+              .then(data => {
+                Object.entries(data).forEach(([key, value]) => {
+                  const cat = key;
+                  const li = document.createElement('li');
+                  const div = document.createElement('div');
+                  div.className = 'form-check ps-0 m-0 category-list-box';
+                  const categoryId = value[0].category_id;
+
+                  div.innerHTML = `
+                    <input class="checkbox_animated" type="checkbox" name="${key}" id="${key}">
+                    <label class="form-check-label" for="${key}">
+                      <span class="name">${key}</span>
+                    </label>
+                  `;
+                  li.appendChild(div);
+                  catList.appendChild(li);
+          
+                  const checkbox = div.querySelector('input[type="checkbox"]');
+                  checkbox.addEventListener('click', () => {
+                    if (checkbox.checked) {
+                        console.log(key);
+
+                      const url = `{% url 'cat_filter' key %}`;
+                      fetch(url)
+                        .then(response => response.json())
+                        .then(data => {
+                          // do something with the returned data
+                        })
+                    }
+                  });
+                });
+              })
+              .catch(error => console.error(error));
+        </script> {% endcomment %}
+        <script>
+            const catList = document.getElementById('category-list-filter');
+            const searchBoxcategory = document.getElementById('search-cat');
+
+            // fetch the data from the API
+            fetch('http://127.0.0.1:8000/product/cat_list/')
+            .then(response => response.json())
+            .then(data => {
+            // iterate over the data and generate the li elements
+            Object.entries(data).forEach(([key, value]) => {
+                const cat = key;
+                const categoryId = value[0].category_id;
+                const li = document.createElement('li');
+                const div = document.createElement('div');
+                div.className = 'form-check ps-0 m-0 category-list-box';
+                div.innerHTML = `
+                <input class="checkbox_animated" type="checkbox" name="${categoryId}" data-category="${categoryId}">
+                <label class="form-check-label" for="${categoryId}">
+                    <span class="name">${key}</span>
+                </label>
+                `;
+                li.appendChild(div);
+                catList.appendChild(li);
+
+                // add event listener to checkbox
+                const checkbox = div.querySelector('input[type="checkbox"]');
+                checkbox.addEventListener('click', (event) => {
+                const categoryId = event.target.dataset.category;
+                console.log(typeof categoryId)
+                const filterUrl = `/product/category-filter/${categoryId}/`;
+                window.location.href = filterUrl;
+                });
+                  
+                    const checkboxes = document.querySelectorAll('.discount');
+                    checkboxes.forEach((checkbox) => {
+                        checkbox.addEventListener('click', (event) => {
+                            const discountText = parseInt(event.target.nextElementSibling.querySelector('.percent').textContent);
+                             // extract the discount percentage from the text
+                            const filterUrl = `/product/discounted_products?discount=${discountText}`;
+                            window.location.href = filterUrl;
+                        });
+                    });
+                
+
+                const radioButtons = document.querySelectorAll('input[type="radio"]');
+                radioButtons.forEach((radioButton) => {
+                    radioButton.addEventListener('click', (event) => {
+                        const color = event.target.value;
+                        const filterUrl = `/product/color-filter/${color}/`;
+                        window.location.href = filterUrl;
+                    });
+                }); 
+
+                // add event listener to search box
+                searchBoxcategory.addEventListener('input', () => {
+                    const searchValue = searchBoxcategory.value.trim().toLowerCase();
+                    const liElements = catList.querySelectorAll('li');
+                    liElements.forEach((liElement) => {
+                    const categoryName = liElement.querySelector('.name').textContent.toLowerCase();
+                    if (categoryName.includes(searchValue)) {
+                        liElement.style.display = 'block';
+                    } else {
+                        liElement.style.display = 'none';
+                    }
+                    });
+                });
+                
+                
+            });
+            })
+            .catch(error => console.error(error));
+        </script>
+    <!-- Shop Section End -->
+    {% endblock content %}
